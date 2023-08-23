@@ -1,6 +1,6 @@
 import classes from '../styles/Services.module.css'
 import Image from 'next/image'
-import HeroOne from '../../images/services-hero.jpg'
+import HeroOne from '../public/images/services-hero.jpg'
 import Service from '@/components/Service'
 import Layout from '@/components/Layout'
 import { BsChevronDown } from 'react-icons/bs'

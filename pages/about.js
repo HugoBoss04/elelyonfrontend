@@ -1,6 +1,6 @@
 import Layout from '@/components/Layout'
 import classes from '../styles/About.module.css'
-import HeroOne from '../../images/about-hero-2.jpg'
+import HeroOne from '../public/images/about-hero-2.jpg'
 import Image from 'next/image'
 
 const AboutPage = () => {

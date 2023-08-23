@@ -1,6 +1,6 @@
 import classes from '../styles/FeaturedServices.module.css'
-import ServiceOneImage from '../../images/service-1-img.jpg'
-import ServiceTwoImage from '../../images/service-2-img.jpg'
+import ServiceOneImage from '../public/images/service-1-img.jpg'
+import ServiceTwoImage from '../public/images/service-2-img.jpg'
 import Image from 'next/image'
 import RazorIcon from '../../images/razor-icon-2.svg'
 import { BsScissors } from 'react-icons/bs'

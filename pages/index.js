@@ -1,7 +1,7 @@
 import Layout from '@/components/Layout'
 import classes from '../styles/Home.module.css'
 import Image from 'next/image'
-import HeroImage from '../../images/home-hero.jpg'
+import HeroImage from '../public/images/home-hero.jpg'
 import { BsScissors } from 'react-icons/bs'
 import FeaturedServices from '@/components/FeaturedServices'
 import ClientGallery from '@/components/ClientGallery'
