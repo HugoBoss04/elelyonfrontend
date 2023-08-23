@@ -18,6 +18,8 @@
   align-items: center;
 }
 .value {
+  text-decoration: none;
+  color: #e3e3e3;
   font-size: 20px;
   font-weight: 500;
 }

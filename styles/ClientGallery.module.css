@@ -26,7 +26,6 @@
   padding-bottom: 30px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   overflow-x: auto;
   column-gap: 3vw;
 }

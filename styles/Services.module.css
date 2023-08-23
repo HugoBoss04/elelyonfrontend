@@ -55,6 +55,7 @@
   position: relative;
 }
 .services-select {
+  color: #4e4d4d;
   background: transparent;
   width: 50%;
   appearance: none;

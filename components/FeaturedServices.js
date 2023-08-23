@@ -4,6 +4,7 @@ import ServiceTwoImage from '../public/images/service-2-img.jpg'
 import Image from 'next/image'
 import { BsScissors } from 'react-icons/bs'
 import { TbBottle } from 'react-icons/tb'
+import Link from 'next/link'
 
 const FeaturedServices = () => {
   return (
@@ -46,9 +47,9 @@ const FeaturedServices = () => {
             barbershop
           </p>
         </div>
-        <button className={`${classes['service-btn']}`}>
+        <Link href='/services' className={`${classes['service-btn']}`}>
           View All Services
-        </button>
+        </Link>
       </div>
     </div>
   )

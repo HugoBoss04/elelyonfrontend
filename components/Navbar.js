@@ -9,7 +9,7 @@ const Navbar = () => {
     <>
       <div className={classes.bg}>
         <div className={classes.container}>
-          <Link href='#' className={classes.logo}>
+          <Link href='/' className={classes.logo}>
             El Elyon
           </Link>
           <div

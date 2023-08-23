@@ -18,7 +18,11 @@
   justify-content: space-around;
 }
 .value {
+  color: #e3e3e3;
   font-size: 16px;
   font-weight: 500;
   letter-spacing: 1px;
+}
+.right .value {
+  font-size: 14px;
 }
