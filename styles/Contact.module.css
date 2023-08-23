@@ -18,6 +18,7 @@
   justify-content: space-around;
 }
 .value {
+  -webkit-appearance: none;
   color: inherit;
   text-decoration: inherit;
   font-size: 16px;

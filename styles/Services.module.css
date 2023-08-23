@@ -65,7 +65,7 @@
 }
 .icon {
   position: absolute;
-  left: calc(50% + 75px);
+  left: calc(50% + 65px);
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: -2;

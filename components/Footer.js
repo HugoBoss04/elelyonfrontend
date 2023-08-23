@@ -5,17 +5,17 @@ const Footer = () => {
   return (
     <div className={classes.bg}>
       <div className={classes.container}>
-        <Link href='#' className={classes.logo}>
+        <Link href='/' className={classes.logo}>
           El Elyon
         </Link>
         <div className={classes['links-container']}>
-          <Link href='#' className={classes.link}>
+          <Link href='/services' className={classes.link}>
             Services
           </Link>
-          <Link href='#' className={classes.link}>
+          <Link href='/about' className={classes.link}>
             About
           </Link>
-          <Link href='#' className={classes.link}>
+          <Link href='/' className={classes.link}>
             Contact
           </Link>
         </div>
