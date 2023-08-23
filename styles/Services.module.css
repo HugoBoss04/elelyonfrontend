@@ -1,0 +1,92 @@
+.services-hero-container {
+  position: relative;
+  margin-bottom: 30px;
+  width: 100vw;
+  height: 350px;
+}
+.img-1 {
+  object-fit: cover;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 5;
+}
+.hero-msg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #e3e3e3;
+  font-size: 32px;
+  letter-spacing: 1.5px;
+  z-index: 6;
+}
+.content-container {
+  max-width: 90vw;
+  margin: 0 auto;
+  text-align: center;
+}
+.title-container {
+  width: 260px;
+  margin: 0 auto 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.line {
+  background: #4e4d4d;
+  height: 2px;
+  width: 30px;
+}
+.title {
+  color: #4e4d4d;
+  margin: 0 10px;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.selection-container {
+  margin-bottom: 30px;
+  position: relative;
+}
+.services-select {
+  background: transparent;
+  width: 50%;
+  appearance: none;
+  border: 1px solid #4e4d4d;
+  font-size: 16px;
+  padding: 10px 10px;
+}
+.icon {
+  position: absolute;
+  left: calc(50% + 75px);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -2;
+}
+.service {
+  background: #4e4d4d;
+  outline: 2px solid #e3e3e3;
+  outline-offset: -15px;
+  margin: 0 auto 30px;
+  color: #e3e3e3;
+  list-style-type: none;
+  height: 265px;
+  width: 70vw;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+.services-hero-two-container {
+  position: relative;
+  width: 100vw;
+  height: 350px;
+  background-position: center bottom;
+  background-size: 500px;
+  background-image: url(../../images/services-hero-2.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}

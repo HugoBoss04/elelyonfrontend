@@ -1,0 +1,55 @@
+.bg {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 90px;
+  background: #777;
+  padding: 20px 0;
+  z-index: 10;
+}
+.container {
+  height: 100%;
+  max-width: 90vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+.logo {
+  color: #e3e3e3;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 1.5;
+}
+
+.line {
+  width: 30px;
+  height: 3px;
+  background-color: #e3e3e3;
+  transition: 0.3s;
+}
+.line.middle {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.menu-icon.open .line.top {
+  transform: translateY(8px) rotate(45deg);
+}
+.menu-icon.open .line.middle {
+  opacity: 0;
+}
+.menu-icon.open .line.bottom {
+  transform: translateY(-8px) rotate(-45deg);
+}
+.mobile-menu-wrapper {
+  position: fixed;
+  top: -220px;
+  left: 0;
+  z-index: 9;
+  transition: top 0.5s ease-in-out;
+}
+.open {
+  top: 90px;
+  left: 0;
+}

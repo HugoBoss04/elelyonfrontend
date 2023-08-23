@@ -1,0 +1,27 @@
+.bg {
+  width: 100vw;
+  height: 90px;
+  background: #777;
+  padding: 20px 0;
+  z-index: 10;
+}
+.container {
+  height: 100%;
+  max-width: 90vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+.logo {
+  color: #e3e3e3;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 1.5;
+}
+.link {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #e3e3e3;
+}

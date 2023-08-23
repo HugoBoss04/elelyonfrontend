@@ -1,0 +1,42 @@
+.title {
+  font-size: 20px;
+  letter-spacing: 1px;
+  padding: 30px 0;
+}
+.additional {
+  font-size: 14px;
+}
+.info-one-container,
+.info-two-container {
+  width: calc(90% - 30px);
+  margin: 0 auto 25px;
+  display: grid;
+  grid-template-columns: max-content 1fr max-content;
+}
+.label,
+.value {
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.line-container {
+  position: relative;
+  width: 100%;
+}
+.line {
+  position: absolute;
+  top: 14px;
+  left: 5%;
+  height: 1px;
+  width: 90%;
+  margin: 0 auto;
+  background: #e3e3e3;
+}
+.btn {
+  color: #4e4d4d;
+  margin-top: 10px;
+  padding: 10px 0;
+  width: 80%;
+  font-size: 16px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
