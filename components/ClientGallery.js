@@ -14,16 +14,10 @@ const ClientGallery = () => {
         <div className={classes.line}></div>
       </div>
       <div className={classes['imgs-container']}>
-        {clientPhotos.map((photo) => {
+        {clientPhotos.map((photo, index) => {
           return (
-            <div className={classes['img-container']}>
-              <Image
-                src={photo}
-                width={180}
-                height={250}
-                alt='Client 1'
-                className={classes.img}
-              />
+            <div className={classes['img-container']} key={index}>
+              <Image src={photo} fill alt='Client 1' className={classes.img} />
             </div>
           )
         })}

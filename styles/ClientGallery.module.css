@@ -24,8 +24,8 @@
   max-width: 90vw;
   height: 280px;
   padding-bottom: 30px;
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 43vw);
   overflow-x: auto;
   column-gap: 15px;
 }

@@ -10,7 +10,7 @@ const Contact = () => {
       </div>
       <div className={classes.middle}>
         <FaPhoneAlt size={22} className={classes.icon} />
-        <p className={classes.value}>(713) - 560 - 5371</p>
+        <p className={classes.value}>713.560.5371</p>
       </div>
       <div className={classes.right}>
         <FaMapMarkerAlt size={22} className={classes.value} />
