@@ -79,9 +79,9 @@
   grid-column: span 2;
   background: #4e4d4d;
   border: none;
-  color: inherit;
+  color: #e3e3e3;
   text-align: center;
-  text-decoration: inherit;
+  text-decoration: none;
   font-size: 14px;
   text-transform: uppercase;
   font-weight: 500;
