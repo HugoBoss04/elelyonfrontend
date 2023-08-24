@@ -41,3 +41,6 @@
   letter-spacing: 1px;
   font-weight: 600;
 }
+button[type='button'].btn {
+  -webkit-border-radius: 0px;
+}
