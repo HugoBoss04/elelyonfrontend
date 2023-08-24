@@ -32,6 +32,7 @@
   background: #e3e3e3;
 }
 .btn {
+  -webkit-border-radius: 0px;
   color: #4e4d4d;
   margin-top: 10px;
   padding: 10px 0;
@@ -40,7 +41,4 @@
   font-size: 16px;
   letter-spacing: 1px;
   font-weight: 600;
-}
-button[type='button'].btn {
-  -webkit-border-radius: 0px;
 }
