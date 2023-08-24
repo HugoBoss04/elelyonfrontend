@@ -32,7 +32,8 @@
   background: #e3e3e3;
 }
 .btn {
-  -webkit-border-radius: 0px;
+  -webkit-appearance: none;
+  background: #e3e3e3;
   color: #4e4d4d;
   margin-top: 10px;
   padding: 10px 0;
