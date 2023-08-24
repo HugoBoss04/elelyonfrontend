@@ -22,7 +22,7 @@
   font-weight: 500;
   letter-spacing: 1px;
 }
-a[x-apple-data-detectors] {
+a[x-apple-data-detectors].value {
   color: inherit !important;
   text-decoration: none !important;
 }
