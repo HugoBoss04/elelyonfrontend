@@ -23,7 +23,9 @@ const Service = ({ name, price, duration, additional }) => {
         </div>
         <p className={classes.value}>{duration}</p>
       </div>
-      <button className={classes.btn}>BOOK APPOINTMENT</button>
+      <button type='submit' className={classes.btn}>
+        BOOK APPOINTMENT
+      </button>
     </>
   )
 }
