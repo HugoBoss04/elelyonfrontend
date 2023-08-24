@@ -10,7 +10,9 @@ const Contact = () => {
       </div>
       <div className={classes.middle}>
         <FaPhoneAlt size={22} className={classes.icon} />
-        <p className={classes.value}>713.560.5371</p>
+        <a href='tel:+1-713-560-5371' className={classes.value}>
+          713-560-5371
+        </a>
       </div>
       <div className={classes.right}>
         <FaMapMarkerAlt size={22} className={classes.value} />
