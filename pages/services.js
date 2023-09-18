@@ -1,13 +1,19 @@
 import classes from '../styles/Services.module.css';
 import Image from 'next/image';
 import HeroOne from '../public/images/services-hero-img-1920x1280.jpg';
+import HeroTwo from '../public/images/services-hero-2.jpg';
 import Service from '@/components/Service';
 import Layout from '@/components/Layout';
 import { BsChevronDown } from 'react-icons/bs';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const ServicesPage = () => {
   const [activeServices, setActiveServices] = useState('cuts');
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    setIsDesktop(window.innerWidth >= 1000);
+  }, []);
   const services = [
     {
       name: "Men's Haircut",
@@ -126,9 +132,22 @@ const ServicesPage = () => {
               })}
           </ul>
         </div>
-        <div className={classes['services-hero-two-container']}>
-          <div className={classes.overlay}></div>
-        </div>
+        {isDesktop ? (
+          <div className={classes['services-hero-two-container']}>
+            <div className={classes.overlay}></div>
+          </div>
+        ) : (
+          <div className={classes['services-hero-two-img-container-mobile']}>
+            <div className={classes.overlay}></div>
+
+            <Image
+              src={HeroTwo}
+              fill
+              alt="Services Image"
+              className={classes['services-hero-img-two']}
+            />
+          </div>
+        )}
       </div>
     </Layout>
   );

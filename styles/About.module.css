@@ -30,6 +30,7 @@
   max-width: 90vw;
   margin: 0 auto;
   text-align: center;
+  z-index: 5;
 }
 .title-container {
   width: 260px;
@@ -144,6 +145,28 @@
   background-image: url(../public/images/about-hero-img-2-640x427.jpg);
   background-attachment: fixed;
   background-repeat: no-repeat;
+}
+.about-hero-two-img-container-mobile {
+  position: relative;
+  width: 100vw;
+  height: 350px;
+}
+.about-hero-img-two {
+  object-fit: cover;
+}
+.about-hero-two-container-2 {
+  background: transparent;
+  position: relative;
+  width: 100vw;
+  height: 400px;
+}
+.about-hero-img-2 {
+  position: fixed !important;
+  top: 1769.55px !important;
+  left: 0 !important;
+  height: 1280px !important;
+  width: 1920px !important;
+  z-index: 1;
 }
 @media (min-width: 1000px) {
   .about-hero-container {

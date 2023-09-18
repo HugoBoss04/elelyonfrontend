@@ -1,7 +1,8 @@
 import Layout from '@/components/Layout';
 import classes from '../styles/About.module.css';
 import HeroOne from '../public/images/about-hero-img-1920x1280.jpg';
-import heroTwo from '../public/images/about-hero-2.jpg';
+import HeroTwo from '../public/images/about-hero-img-2-1920x1280.jpg';
+import aboutImg from '../public/images/about-section-img.jpg';
 import includedImgOne from '../public/images/included-img-1-4.jpg';
 import includedImgTwo from '../public/images/included-img-2.jpg';
 import includedImgThree from '../public/images/included-img-3.jpg';
@@ -45,7 +46,7 @@ const AboutPage = () => {
             </div>
             <div className={classes['about-section-two']}>
               <Image
-                src={heroTwo}
+                src={aboutImg}
                 fill
                 alt="Services Image"
                 className={classes['about-section-img']}
@@ -111,9 +112,19 @@ const AboutPage = () => {
             </div>
           </div>
         </div>
-        <div className={classes['about-hero-two-container']}>
-          <div className={classes.overlay}></div>
-        </div>
+        {isDesktop ? (
+          <div className={classes['about-hero-two-container']}></div>
+        ) : (
+          <div className={classes['about-hero-two-img-container-mobile']}>
+            <div className={classes.overlay}></div>
+            <Image
+              src={HeroTwo}
+              fill
+              alt="About Hero Image"
+              className={classes['about-hero-img-two']}
+            />
+          </div>
+        )}
       </div>
     </Layout>
   );

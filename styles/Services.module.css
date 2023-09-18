@@ -91,6 +91,14 @@
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
+.services-hero-two-img-container-mobile {
+  position: relative;
+  width: 100vw;
+  height: 350px;
+}
+.services-hero-img-two {
+  object-fit: cover;
+}
 @media (min-width: 1000px) {
   .services-hero-container {
     height: 500px;
