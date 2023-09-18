@@ -68,7 +68,7 @@
   left: calc(50% + 65px);
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: -2;
+  z-index: 2;
 }
 .service {
   background: #4e4d4d;
@@ -85,7 +85,7 @@
   position: relative;
   width: 100vw;
   height: 350px;
-  background-position: center bottom;
+  background-position: center center;
   background-size: 500px;
   background-image: url(../public/images/services-hero-2.jpg);
   background-attachment: fixed;

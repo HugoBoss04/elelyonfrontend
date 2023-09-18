@@ -84,7 +84,7 @@
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
 }
 .heading {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 600;
   letter-spacing: 1px;
   padding: 30px 0 30px;
@@ -92,7 +92,7 @@
 .msg {
   margin: 0 auto;
   width: calc(90% - 30px);
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 500;
   line-height: 2;
 }
@@ -100,6 +100,7 @@
   max-width: 90vw;
   height: 475px;
   margin: 0 auto 30px;
+  padding: 5px;
   display: grid;
   grid-template-columns: repeat(3, 250px);
   align-items: center;
@@ -139,9 +140,9 @@
   position: relative;
   width: 100vw;
   height: 300px;
-  background-position: center bottom;
+  background-position: center center;
   background-size: 600px;
-  background-image: url(../public/images/about-hero-img-2-1920x1280.jpg);
+  background-image: url(../public/images/about-hero-img-2-640x427.jpg);
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
@@ -162,9 +163,11 @@
   .about-hero-two-container {
     height: 600px;
     background-position: center center;
+    background-image: url(../public/images/about-hero-img-2-1920x1280.jpg);
     background-size: 100vw;
   }
   .about-section {
+    flex-direction: row;
     max-width: 55vw;
     row-gap: 0;
     column-gap: 30px;
@@ -173,6 +176,7 @@
   .included-section {
     max-width: 70vw;
     margin: 0 auto 60px;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
