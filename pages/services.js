@@ -1,13 +1,13 @@
-import classes from '../styles/Services.module.css'
-import Image from 'next/image'
-import HeroOne from '../public/images/services-hero.jpg'
-import Service from '@/components/Service'
-import Layout from '@/components/Layout'
-import { BsChevronDown } from 'react-icons/bs'
-import { useState } from 'react'
+import classes from '../styles/Services.module.css';
+import Image from 'next/image';
+import HeroOne from '../public/images/services-hero-img-1920x1280.jpg';
+import Service from '@/components/Service';
+import Layout from '@/components/Layout';
+import { BsChevronDown } from 'react-icons/bs';
+import { useState } from 'react';
 
 const ServicesPage = () => {
-  const [activeServices, setActiveServices] = useState('cuts')
+  const [activeServices, setActiveServices] = useState('cuts');
   const services = [
     {
       name: "Men's Haircut",
@@ -44,16 +44,44 @@ const ServicesPage = () => {
       price: 49,
       duration: '1 min.',
     },
-  ]
+    {
+      name: 'Royal Treatment',
+      additional: '',
+      category: 'royal-treatments',
+      price: 49,
+      duration: '1 min.',
+    },
+    {
+      name: 'Royal Treatment',
+      additional: '',
+      category: 'royal-treatments',
+      price: 49,
+      duration: '1 min.',
+    },
+    {
+      name: 'Royal Treatment',
+      additional: '',
+      category: 'royal-treatments',
+      price: 49,
+      duration: '1 min.',
+    },
+    {
+      name: 'Royal Treatment',
+      additional: '',
+      category: 'royal-treatments',
+      price: 49,
+      duration: '1 min.',
+    },
+  ];
 
   return (
     <Layout>
-      <div className='first-bg'>
+      <div className="first-bg">
         <div className={classes['services-hero-container']}>
           <Image
             src={HeroOne}
             fill
-            alt='Services Image'
+            alt="Services Image"
             className={classes['img-1']}
           />
           <div className={classes.overlay}></div>
@@ -67,16 +95,16 @@ const ServicesPage = () => {
           </div>
           <div className={classes['selection-container']}>
             <select
-              id='servicesSelect'
-              name='services'
+              id="servicesSelect"
+              name="services"
               className={classes['services-select']}
               onChange={(e) => setActiveServices(e.target.value)}
             >
-              <option value='cuts'>Cuts</option>
-              <option value='waxing'>Waxing</option>
-              <option value='coloring'>Coloring</option>
-              <option value='royal-treatments'>Royal Treatments</option>
-              <option value='facials'>Facials</option>
+              <option value="cuts">Cuts</option>
+              <option value="waxing">Waxing</option>
+              <option value="coloring">Coloring</option>
+              <option value="royal-treatments">Royal Treatments</option>
+              <option value="facials">Facials</option>
             </select>
             <BsChevronDown className={classes.icon} />
           </div>
@@ -84,7 +112,7 @@ const ServicesPage = () => {
             {services
               .filter((service) => service.category === activeServices)
               .map((service, index) => {
-                const { name, price, duration, additional } = service
+                const { name, price, duration, additional } = service;
                 return (
                   <li className={classes.service} key={index}>
                     <Service
@@ -94,7 +122,7 @@ const ServicesPage = () => {
                       additional={additional}
                     />
                   </li>
-                )
+                );
               })}
           </ul>
         </div>
@@ -103,6 +131,6 @@ const ServicesPage = () => {
         </div>
       </div>
     </Layout>
-  )
-}
-export default ServicesPage
+  );
+};
+export default ServicesPage;

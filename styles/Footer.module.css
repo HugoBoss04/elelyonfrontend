@@ -1,27 +1,126 @@
 .bg {
+  color: #e3e3e3;
   width: 100vw;
-  height: 90px;
+  height: fit-content;
   background: #777;
-  padding: 20px 0;
+  padding: 40px 0;
   z-index: 10;
 }
 .container {
-  height: 100%;
-  max-width: 90vw;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.first-section {
+  width: 90vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 auto;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e3e3e3;
+}
+.second-section {
+  width: 90vw;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr 1fr;
+}
+.first-column,
+.second-column,
+.third-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .logo {
   color: #e3e3e3;
   text-decoration: none;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 500;
   letter-spacing: 1.5;
 }
 .link {
-  margin-right: 10px;
+  margin-bottom: 15px;
   text-decoration: none;
   color: #e3e3e3;
+  font-size: 15px;
+  transition: color 0.2s ease-in-out;
+}
+.link:hover {
+  color: #4e4d4d;
+}
+.social-link-container {
+  position: relative;
+  display: inline-block;
+  height: 36px;
+  width: 36px;
+  text-decoration: none;
+  color: #e3e3e3;
+  margin-left: 20px;
+  border: 2px solid #e3e3e3;
+  border-radius: 50%;
+  transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+.social-link-container:hover {
+  background: #e3e3e3;
+  color: #4e4d4d;
+}
+.social-link {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.heading {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.75px;
+  margin-bottom: 15px;
+}
+.text {
+  position: relative;
+  color: #e3e3e3;
+  font-size: 15px;
+  margin-left: 25px;
+}
+.clock-icon {
+  position: absolute;
+  top: 0;
+  left: -25px;
+}
+.number-fix {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+@media (min-width: 1000px) {
+  .first-section {
+    width: 70vw;
+  }
+  .second-section {
+    width: 70vw;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    column-gap: 60px;
+  }
+  .logo {
+    font-size: 36px;
+  }
+  .social-link-container {
+    height: 45px;
+    width: 45px;
+  }
+  .heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .text {
+    font-size: 18px;
+  }
+  .link {
+    font-size: 18px;
+  }
 }

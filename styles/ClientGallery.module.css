@@ -38,3 +38,24 @@
 .img {
   object-fit: cover;
 }
+@media (min-width: 1000px) {
+  .container {
+    max-width: 70vw;
+    margin-bottom: 60px;
+  }
+  .title-container {
+    width: fit-content;
+    margin: 0 auto 60px;
+  }
+  .title {
+    font-size: 32px;
+  }
+  .imgs-container {
+    grid-template-columns: repeat(3, 500px);
+    height: fit-content;
+  }
+  .img-container {
+    width: 500px;
+    height: 500px;
+  }
+}

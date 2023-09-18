@@ -41,9 +41,25 @@
   font-weight: 500;
   z-index: 6;
 }
+.hero-btn:hover {
+  cursor: pointer;
+}
 .hero-scissors {
   position: absolute;
   top: 30%;
   right: 13%;
   color: #e3e3e3;
+}
+@media (min-width: 1000px) {
+  .hero-img-container {
+    height: 600px;
+    margin-bottom: 60px;
+  }
+  .hero-msg {
+    width: 500px;
+    font-size: 32px;
+  }
+  .hero-btn {
+    margin-top: 325px;
+  }
 }

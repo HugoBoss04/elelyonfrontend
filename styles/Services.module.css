@@ -32,7 +32,7 @@
   text-align: center;
 }
 .title-container {
-  width: 260px;
+  width: fit-content;
   margin: 0 auto 30px;
   display: flex;
   align-items: center;
@@ -90,4 +90,42 @@
   background-image: url(../public/images/services-hero-2.jpg);
   background-attachment: fixed;
   background-repeat: no-repeat;
+}
+@media (min-width: 1000px) {
+  .services-hero-container {
+    height: 500px;
+  }
+  .hero-msg {
+    font-size: 48px;
+    letter-spacing: 2px;
+  }
+  .title-container {
+    margin: 0 auto 30px;
+  }
+  .title {
+    font-size: 32px;
+  }
+  .services-select {
+    width: 250px;
+    font-size: 18px;
+  }
+  .icon {
+    left: calc(50% + 105px);
+  }
+  .services-container {
+    display: grid;
+    margin-bottom: 60px;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 60px;
+    row-gap: 30px;
+  }
+  .service {
+    width: 100%;
+  }
+  .services-hero-two-container {
+    width: 100vw;
+    height: 600px;
+    background-position: center center;
+    background-size: 100vw;
+  }
 }

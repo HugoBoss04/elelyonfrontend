@@ -26,6 +26,27 @@ a[href^='tel'].value {
   color: inherit !important;
   text-decoration: none !important;
 }
-.right .value {
-  font-size: 14px;
+.number-fix {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+.telephone-number {
+  letter-spacing: 1px;
+}
+@media (min-width: 1000px) {
+  .container {
+    background: #4e4d4d;
+    height: 150px;
+    width: 100vw;
+    padding: 15px 0;
+    display: block;
+    color: #e3e3e3;
+  }
+  .content-container {
+    max-width: 70vw;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: 100px;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

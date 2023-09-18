@@ -53,3 +53,28 @@
   top: 90px;
   left: 0;
 }
+.links-container {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.link {
+  color: #e3e3e3;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+.link:hover {
+  color: #4e4d4d;
+}
+@media (min-width: 1000px) {
+  .bg {
+    width: calc(100vw - 15px);
+  }
+  .container {
+    max-width: 70vw;
+  }
+  .logo {
+    font-size: 36px;
+  }
+}

@@ -43,3 +43,6 @@
   letter-spacing: 1px;
   font-weight: 600;
 }
+.btn:hover {
+  cursor: pointer;
+}
