@@ -85,8 +85,8 @@
   position: relative;
   width: 100vw;
   height: 350px;
-  background-position: center center;
-  background-size: 500px;
+  background-position: center bottom;
+  background-size: 700px;
   background-image: url(../public/images/services-hero-2.jpg);
   background-attachment: fixed;
   background-repeat: no-repeat;

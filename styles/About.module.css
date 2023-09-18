@@ -100,7 +100,6 @@
   max-width: 90vw;
   height: 475px;
   margin: 0 auto 30px;
-  padding: 5px;
   display: grid;
   grid-template-columns: repeat(3, 250px);
   align-items: center;
@@ -140,8 +139,8 @@
   position: relative;
   width: 100vw;
   height: 300px;
-  background-position: center center;
-  background-size: 600px;
+  background-position: center bottom;
+  background-size: 900px;
   background-image: url(../public/images/about-hero-img-2-640x427.jpg);
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -176,7 +175,6 @@
   .included-section {
     max-width: 70vw;
     margin: 0 auto 60px;
-    padding: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
