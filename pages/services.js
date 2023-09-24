@@ -6,79 +6,31 @@ import Service from '@/components/Service';
 import Layout from '@/components/Layout';
 import { BsChevronDown } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
+import { API_URL } from '../config';
 
-const ServicesPage = () => {
-  const [activeServices, setActiveServices] = useState('cuts');
+const ServicesPage = ({ services }) => {
+  const [activeServices, setActiveServices] = useState(services.data);
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     setIsDesktop(window.innerWidth >= 1000);
   }, []);
-  const services = [
-    {
-      name: "Men's Haircut",
-      additional: '',
-      category: 'cuts',
-      price: 35,
-      duration: '30 min.',
-    },
-    {
-      name: 'Haircut & Beard',
-      additional: '',
-      category: 'cuts',
-      price: 65,
-      duration: '1 hr.',
-    },
-    {
-      name: "Boy's Haircut",
-      additional: '10 & under',
-      category: 'cuts',
-      price: 25,
-      duration: '30 min.',
-    },
-    {
-      name: 'Elite Treatment',
-      additional: '',
-      category: 'royal-treatments',
-      price: 49,
-      duration: '1 hr.',
-    },
-    {
-      name: 'Royal Treatment',
-      additional: '',
-      category: 'royal-treatments',
-      price: 49,
-      duration: '1 min.',
-    },
-    {
-      name: 'Royal Treatment',
-      additional: '',
-      category: 'royal-treatments',
-      price: 49,
-      duration: '1 min.',
-    },
-    {
-      name: 'Royal Treatment',
-      additional: '',
-      category: 'royal-treatments',
-      price: 49,
-      duration: '1 min.',
-    },
-    {
-      name: 'Royal Treatment',
-      additional: '',
-      category: 'royal-treatments',
-      price: 49,
-      duration: '1 min.',
-    },
-    {
-      name: 'Royal Treatment',
-      additional: '',
-      category: 'royal-treatments',
-      price: 49,
-      duration: '1 min.',
-    },
-  ];
+  // const services = [
+  //   {
+  //     name: "Men's Haircut",
+  //     additional: '',
+  //     category: 'cuts',
+  //     price: 35,
+  //     duration: '30 min.',
+  //   },
+  //   ]
+
+  const setCategory = (e) => {
+    const filteredCategory = services.data.filter((service) => {
+      return service.attributes.category === e.target.value;
+    });
+    setActiveServices(filteredCategory);
+  };
 
   return (
     <Layout>
@@ -104,7 +56,7 @@ const ServicesPage = () => {
               id="servicesSelect"
               name="services"
               className={classes['services-select']}
-              onChange={(e) => setActiveServices(e.target.value)}
+              onChange={(e) => setCategory(e)}
             >
               <option value="cuts">Cuts</option>
               <option value="waxing">Waxing</option>
@@ -115,21 +67,20 @@ const ServicesPage = () => {
             <BsChevronDown className={classes.icon} />
           </div>
           <ul className={classes['services-container']}>
-            {services
-              .filter((service) => service.category === activeServices)
-              .map((service, index) => {
-                const { name, price, duration, additional } = service;
-                return (
-                  <li className={classes.service} key={index}>
-                    <Service
-                      name={name}
-                      price={price}
-                      duration={duration}
-                      additional={additional}
-                    />
-                  </li>
-                );
-              })}
+            {activeServices.map((service, index) => {
+              const { name, price, duration, additionalDetails } =
+                service.attributes;
+              return (
+                <li className={classes.service} key={index}>
+                  <Service
+                    name={name}
+                    price={price}
+                    duration={duration}
+                    additionalDetails={additionalDetails}
+                  />
+                </li>
+              );
+            })}
           </ul>
         </div>
         {isDesktop ? (
@@ -153,3 +104,12 @@ const ServicesPage = () => {
   );
 };
 export default ServicesPage;
+
+export async function getServerSideProps() {
+  const res = await fetch(`${API_URL}/api/services?$populate=*`);
+  const services = await res.json();
+
+  return {
+    props: { services },
+  };
+}

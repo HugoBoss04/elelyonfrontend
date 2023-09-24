@@ -1,12 +1,17 @@
-import classes from '../styles/Service.module.css'
+import Link from 'next/link';
+import classes from '../styles/Service.module.css';
 
-const Service = ({ name, price, duration, additional }) => {
+const Service = ({ name, price, duration, additionalDetails }) => {
+  const durationTrimmed = duration.split('x')[1].trim();
+  const durationTrimmedSplit = durationTrimmed.split(' ');
+  const durationNumber = durationTrimmedSplit[0];
+  const durationLength = durationTrimmedSplit[1];
   return (
     <>
       <h3 className={classes.title}>
         {name}
-        {additional !== '' && (
-          <span className={classes.additional}> ({additional})</span>
+        {additionalDetails !== '' && additionalDetails !== null && (
+          <span className={classes.additional}> ({additionalDetails})</span>
         )}
       </h3>
       <div className={classes['info-one-container']}>
@@ -14,19 +19,27 @@ const Service = ({ name, price, duration, additional }) => {
         <div className={classes['line-container']}>
           <div className={classes.line}></div>
         </div>
-        <p className={classes.value}>${price.toFixed(2)}</p>
+        <p className={classes.value}>
+          $<span className={classes['number-fix']}>{price.toFixed(2)}</span>
+        </p>
       </div>
       <div className={classes['info-two-container']}>
         <p className={classes.label}>Duration</p>
         <div className={classes['line-container']}>
           <div className={classes.line}></div>
         </div>
-        <p className={classes.value}>{duration}</p>
+        <p className={classes.value}>
+          <span className={classes['number-fix']}>{durationNumber} </span>
+          {durationLength}.
+        </p>
       </div>
-      <button type='button' className={classes.btn}>
+      <Link
+        href="https://salonlofts.com/ariana_h/schedule"
+        className={classes.btn}
+      >
         BOOK APPOINTMENT
-      </button>
+      </Link>
     </>
-  )
-}
-export default Service
+  );
+};
+export default Service;

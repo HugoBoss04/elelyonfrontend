@@ -1,0 +1,26 @@
+.rating-container {
+  margin-top: 5px;
+}
+
+.full {
+  fill: #e3e3e3;
+  margin-right: 5px;
+}
+.empty {
+  fill: #dcdcdc;
+  stroke: #dcdcdc;
+}
+.half {
+  position: relative;
+  fill: #454545;
+}
+.half::before {
+  content: '';
+  position: absolute;
+  height: 20px;
+  width: 10px;
+  top: 0;
+  left: 55%;
+  background: #f8f8f8;
+  z-index: 1;
+}

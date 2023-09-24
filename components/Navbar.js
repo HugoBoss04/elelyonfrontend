@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import classes from "../styles/Navbar.module.css";
-import Link from "next/link";
-import Menu from "./Menu";
+import { useEffect, useState } from 'react';
+import classes from '../styles/Navbar.module.css';
+import Link from 'next/link';
+import Menu from './Menu';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +19,7 @@ const Navbar = () => {
           </Link>
           {!isDesktop ? (
             <div
-              className={`${classes["menu-icon"]} ${isOpen && classes.open}`}
+              className={`${classes['menu-icon']} ${isOpen && classes.open}`}
               onClick={() => setIsOpen(!isOpen)}
             >
               <div className={`${classes.line} ${classes.top}`}></div>
@@ -27,11 +27,11 @@ const Navbar = () => {
               <div className={`${classes.line} ${classes.bottom}`}></div>
             </div>
           ) : (
-            <div className={classes["links-container"]}>
+            <div className={classes['links-container']}>
               <Link href="/services" className={classes.link}>
                 Services
               </Link>
-              <Link href="#contact" className={classes.link}>
+              <Link href="/?scrollTo=contact" className={classes.link}>
                 Contact
               </Link>
               <Link href="/about" className={classes.link}>
@@ -43,7 +43,7 @@ const Navbar = () => {
       </div>
       {!isDesktop && (
         <div
-          className={`${classes["mobile-menu-wrapper"]} ${
+          className={`${classes['mobile-menu-wrapper']} ${
             isOpen && classes.open
           }`}
         >

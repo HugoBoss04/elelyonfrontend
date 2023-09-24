@@ -68,7 +68,7 @@
   outline-offset: -15px;
   color: #4e4d4d;
   list-style-type: none;
-  height: 450px;
+  height: 400px;
   width: 100%;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
   display: flex;
@@ -78,7 +78,7 @@
 .about-section-two {
   position: relative;
   width: 100%;
-  height: 450px;
+  height: 350px;
 }
 .about-section-img {
   object-fit: cover;
@@ -88,7 +88,7 @@
   font-size: 24px;
   font-weight: 600;
   letter-spacing: 1px;
-  padding: 30px 0 30px;
+  padding: 0 0 30px;
 }
 .msg {
   margin: 0 auto;
@@ -98,7 +98,7 @@
   line-height: 2;
 }
 .included-section {
-  max-width: 90vw;
+  width: calc(90vw);
   height: 475px;
   margin: 0 auto 30px;
   display: grid;
@@ -195,9 +195,14 @@
     column-gap: 30px;
     margin: 0 auto 60px;
   }
+  .about-section-two,
+  .about-section-one {
+    height: 450px;
+  }
   .included-section {
-    max-width: 70vw;
+    max-width: calc(70vw + 30px);
     margin: 0 auto 60px;
+    padding: 0 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;

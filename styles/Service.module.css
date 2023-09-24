@@ -32,17 +32,23 @@
   background: #e3e3e3;
 }
 .btn {
+  display: inline-block;
   -webkit-appearance: none;
   background: #e3e3e3;
   color: #4e4d4d;
   margin-top: 10px;
-  padding: 10px 0;
+  padding: 10px 20px;
   width: 80%;
   border-radius: 0px;
   font-size: 16px;
   letter-spacing: 1px;
   font-weight: 600;
+  text-decoration: none;
 }
 .btn:hover {
   cursor: pointer;
+}
+.number-fix {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
 }

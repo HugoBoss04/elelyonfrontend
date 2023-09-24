@@ -18,13 +18,19 @@ const Footer = () => {
             El Elyon
           </Link>
           <div className={classes['links-container']}>
-            <Link href="/services" className={classes['social-link-container']}>
+            <Link
+              href="https://www.google.com/search?q=el+elyon&rlz=1C1VDKB_enUS1008US1008&oq=el+elyon&aqs=chrome.0.69i59j0i433i512j46i175i199i512j0i512l2j69i60j69i61l2.3161j0j4&sourceid=chrome&ie=UTF-8#ip=1&lkt=LocalPoiReviews&rlimm=15856587385465244161"
+              className={classes['social-link-container']}
+            >
               <FaGoogle
                 size={isDesktop ? 24 : 18}
                 className={classes['social-link']}
               />
             </Link>
-            <Link href="/about" className={classes['social-link-container']}>
+            <Link
+              href="https://www.instagram.com/el.elyon_haircuts.for.men/"
+              className={classes['social-link-container']}
+            >
               <FaInstagram
                 size={isDesktop ? 28 : 22}
                 className={classes['social-link']}
@@ -35,13 +41,13 @@ const Footer = () => {
         <div className={classes['second-section']}>
           <div className={classes['first-column']}>
             <p className={classes.heading}>Explore</p>
-            <Link href="#" className={classes.link}>
+            <Link href="/services" className={classes.link}>
               All Services
             </Link>
-            <Link href="#" className={classes.link}>
+            <Link href="/about" className={classes.link}>
               About
             </Link>
-            <Link href="#" className={classes.link}>
+            <Link href="/?scrollTo=contact" className={classes.link}>
               Contact
             </Link>
           </div>

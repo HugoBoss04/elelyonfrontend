@@ -7,7 +7,7 @@ import { TbBottle } from 'react-icons/tb';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-const FeaturedServices = () => {
+const FeaturedServices = ({ services }) => {
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
@@ -32,58 +32,27 @@ const FeaturedServices = () => {
           </div>
         ) : (
           <div className={classes['services-container']}>
-            <div className={classes['service']}>
-              <p className={classes.label}>Men's Haircut</p>
-              <div className={classes['line-container']}>
-                <div className={classes['service-line']}></div>
-              </div>
-              <p className={`${classes.value} ${classes['number-fix']}`}>
-                $35.00
-              </p>
-            </div>
-            <div className={classes['service']}>
-              <p className={classes.label}>Boy's Haircut</p>
-              <div className={classes['line-container']}>
-                <div className={classes['service-line']}></div>
-              </div>
-              <p className={`${classes.value} ${classes['number-fix']}`}>
-                $25.00
-              </p>
-            </div>
-            <div className={classes['service']}>
-              <p className={classes.label}>Haircut & Beard</p>
-              <div className={classes['line-container']}>
-                <div className={classes['service-line']}></div>
-              </div>
-              <p className={`${classes.value} ${classes['number-fix']}`}>
-                $65.00
-              </p>
-            </div>
-            <div className={classes['service']}>
-              <p className={classes.label}>Elite Treatment</p>
-              <div className={classes['line-container']}>
-                <div className={classes['service-line']}></div>
-              </div>
-              <p className={`${classes.value} ${classes['number-fix']}`}>
-                $49.00
-              </p>
-            </div>
-            <div className={classes['service']}>
-              <p className={classes.label}>Royal Treatment</p>
-              <div className={classes['line-container']}>
-                <div className={classes['service-line']}></div>
-              </div>
-              <p className={`${classes.value} ${classes['number-fix']}`}>
-                $49.00
-              </p>
-            </div>
-            <button className={classes['desktop-service-btn']}>
+            {services.data.map((service) => {
+              const { name, price } = service.attributes;
+              return (
+                <div className={classes['service']}>
+                  <p className={classes.label}>{name}</p>
+                  <div className={classes['line-container']}>
+                    <div className={classes['service-line']}></div>
+                  </div>
+                  <p className={`${classes.value} ${classes['number-fix']}`}>
+                    ${price.toFixed(2)}
+                  </p>
+                </div>
+              );
+            })}
+            <Link href="/services" className={classes['desktop-service-btn']}>
               view all services
               <BsScissors
                 size={20}
                 className={classes['desktop-scissor-icon']}
               />
-            </button>
+            </Link>
           </div>
         )}
         <div className={`${classes['service-1-img-container']}`}>
