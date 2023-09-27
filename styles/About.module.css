@@ -170,10 +170,10 @@
 }
 @media (min-width: 1000px) {
   .about-hero-container {
-    height: 500px;
+    height: 400px;
   }
   .hero-msg {
-    font-size: 48px;
+    font-size: 42px;
     letter-spacing: 2px;
   }
   .title-container {
@@ -183,14 +183,14 @@
     font-size: 32px;
   }
   .about-hero-two-container {
-    height: 600px;
+    height: 500px;
     background-position: center center;
     background-image: url(../public/images/about-hero-img-2-1920x1280.jpg);
     background-size: 100vw;
   }
   .about-section {
     flex-direction: row;
-    max-width: 55vw;
+    max-width: 70vw;
     row-gap: 0;
     column-gap: 30px;
     margin: 0 auto 60px;
@@ -198,6 +198,34 @@
   .about-section-two,
   .about-section-one {
     height: 450px;
+  }
+  .included-section {
+    max-width: calc(70vw + 30px);
+    margin: 0 auto 60px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .included-subsection {
+    width: 350px;
+  }
+  .subsection-heading {
+    margin-bottom: 20px;
+  }
+}
+@media (min-width: 1350px) {
+  .about-hero-container {
+    height: 500px;
+  }
+  .hero-msg {
+    font-size: 48px;
+  }
+  .about-hero-two-container {
+    height: 600px;
+  }
+  .about-section {
+    max-width: 55vw;
   }
   .included-section {
     max-width: calc(70vw + 30px);

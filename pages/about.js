@@ -113,7 +113,9 @@ const AboutPage = () => {
           </div>
         </div>
         {isDesktop ? (
-          <div className={classes['about-hero-two-container']}></div>
+          <div className={classes['about-hero-two-container']}>
+            <div className={classes.overlay}></div>
+          </div>
         ) : (
           <div className={classes['about-hero-two-img-container-mobile']}>
             <div className={classes.overlay}></div>

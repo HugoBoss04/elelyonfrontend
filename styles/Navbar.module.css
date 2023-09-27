@@ -69,7 +69,7 @@
 }
 @media (min-width: 1000px) {
   .bg {
-    width: calc(100vw - 15px);
+    width: 100vw;
   }
   .container {
     max-width: 70vw;

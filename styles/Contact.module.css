@@ -44,7 +44,7 @@ a[href^='tel'].value {
   .container {
     padding: 15px 0;
     color: #e3e3e3;
-    max-width: 70vw;
+    max-width: 80vw;
     margin: 0 auto;
     grid-template-rows: 125px;
     grid-template-columns: repeat(3, 1fr);
@@ -54,5 +54,10 @@ a[href^='tel'].value {
   .right {
     padding-top: 30px;
     row-gap: 30px;
+  }
+}
+@media (min-width: 1350px) {
+  .container {
+    max-width: 70vw;
   }
 }

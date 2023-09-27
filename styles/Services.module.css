@@ -101,10 +101,10 @@
 }
 @media (min-width: 1000px) {
   .services-hero-container {
-    height: 500px;
+    height: 400px;
   }
   .hero-msg {
-    font-size: 48px;
+    font-size: 40px;
     letter-spacing: 2px;
   }
   .title-container {
@@ -132,8 +132,19 @@
   }
   .services-hero-two-container {
     width: 100vw;
-    height: 600px;
+    height: 400px;
     background-position: center center;
     background-size: 100vw;
+  }
+}
+@media (min-width: 1350px) {
+  .services-hero-container {
+    height: 500px;
+  }
+  .hero-msg {
+    font-size: 48px;
+  }
+  .services-hero-two-container {
+    height: 600px;
   }
 }
