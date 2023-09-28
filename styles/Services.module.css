@@ -55,6 +55,7 @@
   position: relative;
 }
 .services-select {
+  outline: none;
   color: #4e4d4d;
   background: transparent;
   width: 50%;
@@ -112,6 +113,9 @@
   }
   .title {
     font-size: 32px;
+  }
+  .selection-container {
+    margin-bottom: 60px;
   }
   .services-select {
     width: 250px;

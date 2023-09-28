@@ -19,7 +19,7 @@ const Footer = () => {
           </Link>
           <div className={classes['links-container']}>
             <Link
-              href="https://www.google.com/search?q=el+elyon&rlz=1C1VDKB_enUS1008US1008&oq=el+elyon&aqs=chrome.0.69i59j0i433i512j46i175i199i512j0i512l2j69i60j69i61l2.3161j0j4&sourceid=chrome&ie=UTF-8#ip=1&lkt=LocalPoiReviews&rlimm=15856587385465244161"
+              href="https://www.google.com/search?q=el+elyon+haircuts+for+men&rlz=1C1VDKB_enUS1008US1008&oq=el&aqs=chrome.0.69i59l3j69i64j69i60l4.1133j0j4&sourceid=chrome&ie=UTF-8"
               className={classes['social-link-container']}
             >
               <FaGoogle
