@@ -26,10 +26,14 @@ const ServicesPage = ({ services }) => {
   //   ]
 
   const setCategory = (e) => {
-    const filteredCategory = services.data.filter((service) => {
-      return service.attributes.category === e.target.value;
-    });
-    setActiveServices(filteredCategory);
+    if (e.target.value === 'all') {
+      setActiveServices(services.data);
+    } else {
+      const filteredCategory = services.data.filter((service) => {
+        return service.attributes.category === e.target.value;
+      });
+      setActiveServices(filteredCategory);
+    }
   };
 
   return (
@@ -58,6 +62,7 @@ const ServicesPage = ({ services }) => {
               className={classes['services-select']}
               onChange={(e) => setCategory(e)}
             >
+              <option value="all">All Services</option>
               <option value="cuts">Cuts</option>
               <option value="waxing">Waxing</option>
               <option value="coloring">Coloring</option>

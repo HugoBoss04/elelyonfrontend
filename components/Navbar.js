@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import classes from '../styles/Navbar.module.css';
 import Link from 'next/link';
 import Menu from './Menu';
@@ -6,6 +7,12 @@ import Menu from './Menu';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
+  const router = useRouter();
+  const { query } = router;
+
+  console.log(query);
+
+  const href = !query.scrollTo ? '/?scrollTo=contact' : '#contact';
 
   useEffect(() => {
     setIsDesktop(window.innerWidth >= 1000);
@@ -31,7 +38,7 @@ const Navbar = () => {
               <Link href="/services" className={classes.link}>
                 Services
               </Link>
-              <Link href="/?scrollTo=contact" className={classes.link}>
+              <Link href={href} className={classes.link}>
                 Contact
               </Link>
               <Link href="/about" className={classes.link}>
@@ -47,7 +54,7 @@ const Navbar = () => {
             isOpen && classes.open
           }`}
         >
-          <Menu />
+          <Menu setIsOpen={setIsOpen} />
         </div>
       )}
     </>
