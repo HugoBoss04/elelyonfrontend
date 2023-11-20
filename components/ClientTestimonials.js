@@ -3,64 +3,19 @@ import { IoStarSharp } from 'react-icons/io5';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
 import Rating from './Rating';
+import { useRouter } from 'next/router';
 
-const ClientTestimonials = ({ testimonials }) => {
+const ClientTestimonials = ({ testimonials, user }) => {
   const [isDesktop, setIsDesktop] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activeTestimonialsContainer, setActiveTestimonialsContainer] =
     useState(0);
 
+  const router = useRouter();
+
   useEffect(() => {
     setIsDesktop(window.innerWidth >= 1000);
   }, []);
-
-  // const testimonials = [
-  //   {
-  //     name: 'Craig N.',
-  //     testimonial:
-  //       "Ariana is amazing. I've been her client for almost a year at a different location. She is the only one that has cut my hair and trimmed my beard leaving me completely satisfied each and every time.",
-  //   },
-  //   {
-  //     name: 'Tanner H.',
-  //     testimonial:
-  //       "Ariana does a great job! She is professional and provides a very clean cut. I've been coming to her for over a year and have never been disappointed!",
-  //   },
-  //   {
-  //     name: 'Paula Carrizales',
-  //     testimonial:
-  //       'Ariana is wonderful! My husband and two boys get their haircuts with her all the time. She is professional and great at what she does. I highly recommend her!',
-  //   },
-  //   {
-  //     name: 'Person 4',
-  //     testimonial:
-  //       "Ariana is amazing. I've been her client for almost a year at a different location. She is the only one that has cut my hair and trimmed my beard leaving me completely satisfied each and every time.",
-  //   },
-  //   {
-  //     name: 'Person 5',
-  //     testimonial:
-  //       "Ariana does a great job! She is professional and provides a very clean cut. I've been coming to her for over a year and have never been disappointed!",
-  //   },
-  //   {
-  //     name: 'Person 6',
-  //     testimonial:
-  //       'Ariana is wonderful! My husband and two boys get their haircuts with her all the time. She is professional and great at what she does. I highly recommend her!',
-  //   },
-  //   {
-  //     name: 'Person 7',
-  //     testimonial:
-  //       "Ariana is amazing. I've been her client for almost a year at a different location. She is the only one that has cut my hair and trimmed my beard leaving me completely satisfied each and every time.",
-  //   },
-  //   {
-  //     name: 'Person 8',
-  //     testimonial:
-  //       "Ariana does a great job! She is professional and provides a very clean cut. I've been coming to her for over a year and have never been disappointed!",
-  //   },
-  //   {
-  //     name: 'Person 9',
-  //     testimonial:
-  //       'Ariana is wonderful! My husband and two boys get their haircuts with her all the time. She is professional and great at what she does. I highly recommend her!',
-  //   },
-  // ];
 
   let containers = [];
   let containerIndex = 0;
@@ -70,28 +25,6 @@ const ClientTestimonials = ({ testimonials }) => {
     containers.push(container);
     containerIndex++;
   }
-  // console.log(testimonials);
-  // const testimonialsArray = {testimonials.map((testimonial, index) => {
-  //   return (
-  //     <div
-  //       className={`${classes.testimonial} ${
-  //         activeTestimonial === index && classes.active
-  //       }`}
-  //       key={index}
-  //     >
-  //       <h3 className={classes.name}>{testimonial.name}</h3>
-  //       <p className={classes.text}>{testimonial.testimonial}</p>
-  //       <div className={classes['stars-container']}>
-  //         <IoStarSharp size={24} className={classes.icon} />
-  //         <IoStarSharp size={24} className={classes.icon} />
-  //         <IoStarSharp size={24} className={classes.icon} />
-  //         <IoStarSharp size={24} className={classes.icon} />
-  //         <IoStarSharp size={24} className={classes.icon} />
-  //       </div>
-  //     </div>
-  //   )
-  // })}
-
   const forwardNav = () => {
     if (!isDesktop) {
       if (activeTestimonial + 1 > testimonials.length - 1) {
@@ -107,17 +40,6 @@ const ClientTestimonials = ({ testimonials }) => {
     } else {
       setActiveTestimonialsContainer(activeTestimonialsContainer + 1);
     }
-    // testimonialsArray[
-    //   activeTestimonial
-    // ].props.className = `${classes.testimonial} ${classes.left}`
-    // setActiveTestimonial(activeTestimonial + 1)
-    // if (activeTestimonial > testimonialsArray.length - 1) {
-    //   setActiveTestimonial(testimonialsArray.length - 1)
-    // }
-
-    // testimonialsArray[
-    //   activeTestimonial
-    // ].props.className = `${classes.testimonial} ${classes.active}`
   };
   const backwardsNav = () => {
     if (!isDesktop) {
@@ -212,6 +134,14 @@ const ClientTestimonials = ({ testimonials }) => {
           onClick={forwardNav}
         />
       </div>
+      {user && (
+        <p
+          className={classes['review-btn']}
+          onClick={() => router.push('/review')}
+        >
+          Want to leave a review?
+        </p>
+      )}
     </div>
   );
 };

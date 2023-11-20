@@ -7,13 +7,15 @@ import FeaturedServices from '@/components/FeaturedServices';
 import ClientGallery from '@/components/ClientGallery';
 import ClientTestimonials from '@/components/ClientTestimonials';
 import Contact from '@/components/Contact';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { API_URL } from '../config';
 import qs from 'qs';
 import { useRouter } from 'next/router';
+import AuthContext from '@/utils/AuthContext';
 
 export default function Home({ allCollections }) {
+  const { user } = useContext(AuthContext);
   const [isDesktop, setIsDesktop] = useState(false);
 
   const router = useRouter();
@@ -57,10 +59,11 @@ export default function Home({ allCollections }) {
           services={allCollections.data[0].attributes.services}
         />
         <ClientGallery
-          clientPictures={allCollections.data[0].attributes.client_galleries}
+          clientPictures={allCollections.data[0].attributes.client_gallery}
         />
         <ClientTestimonials
           testimonials={allCollections.data[0].attributes.testimonials}
+          user={user}
         />
         <div id="contact">
           <Contact />
@@ -73,7 +76,7 @@ export default function Home({ allCollections }) {
 export async function getServerSideProps() {
   const query = qs.stringify({
     populate: {
-      client_galleries: {
+      client_gallery: {
         populate: ['clientPictures'],
       },
       services: true,
@@ -81,8 +84,8 @@ export async function getServerSideProps() {
     },
   });
 
-  const res2 = await fetch(`${API_URL}/api/all-collections?${query}`);
-  const allCollections = await res2.json();
+  const res = await fetch(`${API_URL}/api/all-collections?${query}`);
+  const allCollections = await res.json();
 
   return {
     props: { allCollections },

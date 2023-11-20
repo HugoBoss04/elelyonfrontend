@@ -1,0 +1,141 @@
+.container {
+  max-width: 70vw;
+  margin: 0 auto;
+  padding-top: 40px;
+  color: #4e4d4d;
+  display: grid;
+  grid-template-columns: 4fr 5fr;
+  justify-content: center;
+  column-gap: 20px;
+}
+.header {
+  margin-bottom: 30px;
+  font-size: 32px;
+}
+.inputs-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.input-one {
+  margin-right: 20px;
+}
+.input-two {
+  width: 150px;
+}
+.input-one,
+.input-two {
+  display: flex;
+  flex-direction: column;
+}
+.label {
+  margin-bottom: 10px;
+  font-size: 22px;
+  font-weight: 500;
+}
+.input {
+  display: block;
+  width: 100%;
+  padding: 9px 10px;
+  color: #777;
+  font-size: 18px;
+  outline: none;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+}
+.selection-container {
+  position: relative;
+}
+.icon {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.rating-select {
+  outline: none;
+  color: #4e4d4d;
+  background: #fff;
+  width: 100%;
+  outline: none;
+  appearance: none;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+  padding: 10px 20px;
+}
+.textarea-label {
+  display: block;
+  margin: 30px 0 10px;
+  font-size: 22px;
+  font-weight: 500;
+}
+.textarea {
+  padding: 10px;
+  font-size: 16px;
+  height: 250px;
+  width: 400px;
+  outline: none;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.btns-container {
+  margin-top: 30px;
+}
+.submit-btn {
+  cursor: pointer;
+  padding: 10px 30px;
+  border: none;
+  background: #4e4d4d;
+  color: #e3e3e3;
+  text-transform: uppercase;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 1px;
+  font-weight: 500;
+  z-index: 6;
+  transition: background 0.2s ease-in-out;
+}
+.cancel-btn {
+  cursor: pointer;
+  padding: 10px 30px;
+  margin-left: 15px;
+  border: none;
+  background: #777;
+  color: #e3e3e3;
+  text-transform: uppercase;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 1px;
+  font-weight: 500;
+  z-index: 6;
+  transition: background 0.2s ease-in-out;
+}
+.error {
+  margin: 15px auto;
+  color: #e91212;
+}
+.success {
+  margin: 15px auto;
+  color: #28a745;
+}
+.img-container {
+  position: relative;
+  width: 70%;
+  height: 600px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.img {
+  object-fit: cover;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 5;
+}

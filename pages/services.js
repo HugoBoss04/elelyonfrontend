@@ -15,15 +15,6 @@ const ServicesPage = ({ services }) => {
   useEffect(() => {
     setIsDesktop(window.innerWidth >= 1000);
   }, []);
-  // const services = [
-  //   {
-  //     name: "Men's Haircut",
-  //     additional: '',
-  //     category: 'cuts',
-  //     price: 35,
-  //     duration: '30 min.',
-  //   },
-  //   ]
 
   const setCategory = (e) => {
     if (e.target.value === 'all') {

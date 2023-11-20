@@ -1,0 +1,56 @@
+.header {
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+  padding: 10px;
+}
+.month-heading {
+  color: #4e4d4d;
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+}
+.next-btn,
+.prev-btn {
+  cursor: pointer;
+  position: relative;
+  background: none;
+  color: #4e4d4d;
+  border: none;
+  font-size: 28px;
+  font-weight: 500;
+}
+.next-btn-text {
+  position: absolute;
+  top: -5px;
+  right: -20px;
+}
+.prev-btn-text {
+  position: absolute;
+  top: -5px;
+  left: -20px;
+}
+.day-header {
+  font-size: 16px;
+  color: #4e4d4d;
+  border-bottom: 1px solid #4e4d4d;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.cell {
+  background: #777;
+  color: #4e4d4d;
+  font-family: 'Roboto', sans-serif;
+  height: 70px;
+  border: 1px solid #4e4d4d;
+  text-align: center;
+}
+.not-empty {
+  background: #e3e3e3;
+}
+.not-empty:hover {
+  cursor: pointer;
+  background: #bbbbbb;
+}

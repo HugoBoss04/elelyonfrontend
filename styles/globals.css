@@ -17,3 +17,9 @@ html {
   min-height: calc(100vh - 180px);
   margin-top: 90px;
 }
+.first-bg-skeleton {
+  width: 100vw;
+  background: #f8f8f8;
+  min-height: calc(100vh - 280px);
+  margin-top: 90px;
+}

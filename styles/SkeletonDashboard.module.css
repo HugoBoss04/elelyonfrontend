@@ -1,0 +1,75 @@
+.skeleton-container {
+  max-width: 70vw;
+  margin: 0 auto;
+  padding: 100px 0 0;
+}
+
+.skeleton-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.skeleton-menu {
+  width: 50%;
+  height: 10px;
+  background: #ccc;
+  border-radius: 5px;
+}
+
+.skeleton-welcome {
+  margin-bottom: 60px;
+}
+
+.skeleton-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.skeleton-box {
+  height: 200px;
+  width: 30%;
+  padding: 10px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.skeleton-text {
+  height: 10px;
+  margin: 10px 0;
+  background: #eee;
+  border-radius: 4px;
+}
+
+.skeleton-long {
+  width: 40%;
+  margin-bottom: 30px;
+}
+
+.skeleton-short {
+  width: 70%;
+  margin-bottom: 15px;
+}
+
+.skeleton-small {
+  width: 50%;
+  height: 8px;
+  margin-bottom: 20px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #eeeeee;
+  }
+  50% {
+    background-color: #dddddd;
+  }
+  100% {
+    background-color: #eeeeee;
+  }
+}
+
+.skeleton-animatedBackground {
+  animation: skeleton-loading 1s infinite;
+}

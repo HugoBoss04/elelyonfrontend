@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import classes from '../styles/Navbar.module.css';
 import Link from 'next/link';
 import Menu from './Menu';
+import AuthContext from '@/utils/AuthContext';
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const router = useRouter();
   const { query } = router;
-
-  console.log(query);
 
   const href = !query.scrollTo ? '/?scrollTo=contact' : '#contact';
 
@@ -43,6 +43,9 @@ const Navbar = () => {
               </Link>
               <Link href="/about" className={classes.link}>
                 About
+              </Link>
+              <Link href="/account/login" className={classes.link}>
+                {user ? user.firstName : 'Login'}
               </Link>
             </div>
           )}

@@ -1,0 +1,56 @@
+.services-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.service {
+  cursor: pointer;
+  list-style: none;
+  height: 100px;
+  border: 1px solid #4e4d4d;
+  color: #4e4d4d;
+}
+.service:hover {
+  background: #bbb;
+}
+.heading {
+  margin: 10px 0 20px;
+  text-align: center;
+  color: inherit;
+  font-size: 20px;
+  font-weight: 500;
+}
+.info-container {
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  column-gap: 30px;
+}
+.info-text {
+  font-family: 'Roboto', sans-serif;
+  color: inherit;
+}
+.selection-container {
+  width: 175px;
+  margin: 0 auto 30px;
+  position: relative;
+}
+.services-select {
+  cursor: pointer;
+  outline: none;
+  color: #4e4d4d;
+  background: transparent;
+  width: 100%;
+  appearance: none;
+  border: 1px solid #4e4d4d;
+  font-size: 16px;
+  padding: 10px 10px;
+}
+.icon {
+  position: absolute;
+  left: calc(50% + 65px);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}

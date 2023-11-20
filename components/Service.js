@@ -1,7 +1,13 @@
 import Link from 'next/link';
 import classes from '../styles/Service.module.css';
 
-const Service = ({ name, price, duration, additionalDetails }) => {
+const Service = ({
+  name,
+  price,
+  duration,
+  additionalDetails,
+  dashboard = false,
+}) => {
   const durationTrimmed = duration.split('x')[1].trim();
   const durationTrimmedSplit = durationTrimmed.split(' ');
   const durationNumber = durationTrimmedSplit[0];
@@ -33,12 +39,14 @@ const Service = ({ name, price, duration, additionalDetails }) => {
           {durationLength}.
         </p>
       </div>
-      <Link
-        href="https://salonlofts.com/ariana_h/schedule"
-        className={classes.btn}
-      >
-        BOOK APPOINTMENT
-      </Link>
+      {!dashboard && (
+        <Link
+          href="https://salonlofts.com/ariana_h/schedule"
+          className={classes.btn}
+        >
+          BOOK APPOINTMENT
+        </Link>
+      )}
     </>
   );
 };
