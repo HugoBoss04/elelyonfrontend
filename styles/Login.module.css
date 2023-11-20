@@ -1,0 +1,132 @@
+.bg {
+  background: #f8f8f8;
+  width: 100vw;
+}
+.container {
+  max-width: 60vw;
+  height: calc(100vh - 150px);
+  margin: 90px auto 0;
+  display: grid;
+  grid-template-columns: 7fr 8fr;
+  grid-template-rows: 500px;
+  align-content: center;
+}
+.form-container {
+  max-width: 25vw;
+}
+.img-container {
+  position: relative;
+  max-width: 35vw;
+}
+.img {
+  object-fit: cover;
+}
+.form {
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.title {
+  align-self: center;
+  color: #777;
+  font-size: 22px;
+  font-weight: 500;
+}
+.input {
+  margin-top: 20px;
+  display: block;
+  width: 100%;
+  padding: 9px 10px;
+  color: #777;
+  font-size: 15px;
+  outline: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+}
+.btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn {
+  font-size: 15px;
+  margin: 20px 0;
+  width: 185px;
+  color: #f8f8f8;
+  background: #454545;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  padding: 10px 0;
+  letter-spacing: 0.75px;
+  transition: background 0.3s;
+}
+.btn-sign-up {
+  background: #777;
+}
+.btn:hover {
+  cursor: pointer;
+  background: #777;
+}
+.btn-sign-up:hover {
+  cursor: pointer;
+  background: #454545;
+}
+.links-container {
+  align-self: center;
+}
+.link {
+  font-size: 15px;
+  display: inline-block;
+  margin: 0 10px;
+  color: #454545;
+}
+.dot {
+  color: #585e71;
+}
+.status-msg {
+  margin: 0 auto 15px;
+}
+.error-msg {
+  color: #e91212;
+}
+.forgot-password-success {
+  margin: 0 auto 15px;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 5;
+}
+.comms-question {
+  margin: 15px 0 10px;
+  color: #4e4d4d;
+  font-size: 15px;
+}
+.label-text {
+  margin-left: 2px;
+  color: #4e4d4d;
+  font-size: 15px;
+}
+.input-radio:not(:first-of-type) {
+  margin-left: 10px;
+}
+@media (max-width: 600px) {
+  .container {
+    min-height: calc(100vh - 160px);
+    max-width: 90vw;
+  }
+  .input,
+  .button {
+    width: 80%;
+  }
+}

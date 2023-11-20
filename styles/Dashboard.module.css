@@ -1,0 +1,230 @@
+.container {
+  max-width: 70vw;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+.greeting {
+  margin-bottom: 20px;
+  font-size: 36px;
+  color: #777;
+}
+.msg {
+  margin-bottom: 30px;
+  font-size: 16px;
+  color: #777;
+}
+.btn {
+  cursor: pointer;
+  padding: 10px 30px;
+  border: none;
+  background: #4e4d4d;
+  color: #e3e3e3;
+  text-transform: uppercase;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 1px;
+  font-weight: 500;
+  z-index: 6;
+  transition: background 0.2s ease-in-out;
+}
+.btn:hover {
+  background: #777;
+  color: #e3e3e3;
+}
+.featured-container {
+  margin-top: 60px;
+  width: 100%;
+}
+.title-container {
+  width: 300x;
+  margin: 0 auto 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.line {
+  background: #4e4d4d;
+  height: 2px;
+  width: 30px;
+}
+.title {
+  color: #4e4d4d;
+  margin: 0 10px;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.services-container {
+  display: grid;
+  margin-bottom: 60px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 250px;
+  column-gap: 30px;
+}
+.service {
+  text-align: center;
+  width: 100%;
+  background: #777;
+  outline: 2px solid #e3e3e3;
+  outline-offset: -15px;
+  margin: 0 auto 30px;
+  color: #e3e3e3;
+  list-style-type: none;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+.appt-container {
+  width: 60%;
+  border: 1px solid #4e4d4d;
+}
+.header-section {
+  background: #4e4d4d;
+  color: #e3e3e3;
+}
+.header {
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+  padding: 20px 30px;
+}
+.subheader {
+  font-family: 'Roboto', sans-serif;
+  display: inline-block;
+  font-size: 18px;
+}
+.info-section-one {
+  padding: 30px 30px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.info-section-two {
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.options-section {
+  width: 100%;
+  height: 70px;
+  padding: 10px 30px 30px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.option-msg {
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+}
+.info-text {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  color: #777;
+}
+.icon {
+  position: absolute;
+  left: -18px;
+}
+.delete-section {
+  padding: 10px 30px 30px;
+  display: grid;
+  grid-template-columns: 100%;
+}
+.delete-msg {
+  margin-bottom: 15px;
+  justify-self: flex-end;
+  font-family: 'Roboto', sans-serif;
+  color: #4e4d4d;
+}
+.btns-container {
+  justify-self: flex-end;
+}
+.delete-btn {
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  margin-right: 20px;
+  width: fit-content;
+  background: #e91212;
+  border: 2px solid #e91212;
+  text-align: center;
+  font-size: 16px;
+  letter-spacing: 0.7px;
+  cursor: pointer;
+  color: #e3e3e3;
+}
+.keep-btn {
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  margin-right: 20px;
+  width: fit-content;
+  background: #777;
+  border: 2px solid #777;
+  text-align: center;
+  font-size: 16px;
+  letter-spacing: 0.7px;
+  cursor: pointer;
+  color: #e3e3e3;
+}
+.schedule-overlay {
+  position: absolute;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+.overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+.schedule-container {
+  position: absolute;
+  width: 70vw;
+  max-height: 600px;
+  background: #f0f0f0;
+  top: 100px;
+  left: 50%;
+  padding: 20px;
+  transform: translateX(-50%);
+  z-index: 5;
+  overflow-y: auto;
+}
+.header-container {
+  position: relative;
+  width: 100%;
+}
+.close {
+  cursor: pointer;
+  position: absolute;
+  top: -10px;
+  right: 0;
+  color: #4e4d4d;
+  font-size: 28px;
+  font-weight: 500;
+}
+.schedule-header {
+  color: #4e4d4d;
+  padding: 0 0 20px 30px;
+}
+.back-arrow-icon {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #4e4d4d;
+}
+.logout-btn {
+  margin-left: 15px;
+  background: #777;
+}
+.appt-present-logout-btn {
+  margin: 30px 0 0 0;
+}
+.component-error-msg {
+  margin-top: 15px;
+  font-size: 18px;
+  color: #e91212;
+}
