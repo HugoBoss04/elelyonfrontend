@@ -18,7 +18,7 @@
 }
 .title {
   color: #4e4d4d;
-  margin: 0 10px 15px;
+  margin: 0 10px;
   font-size: 24px;
   font-weight: 500;
   letter-spacing: 1px;
@@ -119,11 +119,10 @@
   transform: translateX(50%);
 }
 .review-btn {
+  width: fit-content;
+  margin: 15px auto 0;
   cursor: pointer;
-  position: absolute;
-  top: 40px;
-  right: 50%;
-  transform: translateX(50%);
+  position: static;
   color: #4e4d4d;
   text-decoration: underline;
   font-weight: 500;
@@ -140,9 +139,14 @@
     margin: 0 auto 60px;
   }
   .review-btn {
+    cursor: pointer;
+    position: absolute;
     top: 15px;
     right: 0;
     transform: none;
+    color: #4e4d4d;
+    text-decoration: underline;
+    font-weight: 500;
   }
 }
 @media (min-width: 1350px) {
