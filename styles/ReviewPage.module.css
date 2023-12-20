@@ -139,3 +139,31 @@
   background: rgba(0, 0, 0, 0.4);
   z-index: 5;
 }
+@media (max-width: 550px) {
+  .container {
+    max-width: 90vw;
+    padding-top: 30px;
+    grid-template-columns: 1fr;
+  }
+  .inputs-container {
+    max-width: 80vw;
+  }
+  .img-container {
+    display: none;
+  }
+  .header {
+    margin-bottom: 15px;
+    font-size: 24px;
+  }
+  .label {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .textarea-label {
+    font-size: 18px;
+  }
+  .textarea {
+    width: 80vw;
+  }
+}

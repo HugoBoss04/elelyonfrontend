@@ -1,5 +1,8 @@
 .rating-container {
   margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .full {
@@ -7,8 +10,7 @@
   margin-right: 5px;
 }
 .empty {
-  fill: #dcdcdc;
-  stroke: #dcdcdc;
+  display: none;
 }
 .half {
   position: relative;

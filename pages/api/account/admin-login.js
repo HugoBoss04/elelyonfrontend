@@ -6,12 +6,6 @@ export default async (req, res) => {
   if (req.method === 'POST') {
     const { identifier, password } = req.body;
 
-    if (!identifier || !password) {
-      res.status(400).json({
-        message: 'Please fill out all fields',
-      });
-    }
-
     if (
       containsSpecialCharacters(identifier) ||
       containsSpecialCharacters(password)
@@ -23,18 +17,7 @@ export default async (req, res) => {
       return;
     }
 
-    res.setHeader(
-      'Set-Cookie',
-      cookie.serialize('token', '', {
-        httpOnly: true,
-        secure: process.env.NODE_ENV !== 'development',
-        expires: new Date(0), // 1 Week
-        sameSite: 'strict',
-        path: '/',
-      })
-    );
-
-    const strapiRes = await fetch(`${API_URL}/api/custom-auth/login`, {
+    const strapiRes = await fetch(`${API_URL}/api/auth/local`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -47,10 +30,9 @@ export default async (req, res) => {
 
     const data = await strapiRes.json();
 
-    if (data?.user?.confirmed === false) {
-      res.status(400).json({
-        message: 'Your account is not verified. Please check your email.',
-      });
+    if (data.user && data.user.username !== 'admin') {
+      res.status(403).json({ message: `Unauthorized` });
+      return;
     }
 
     if (strapiRes.ok) {
@@ -67,7 +49,7 @@ export default async (req, res) => {
       );
       res.status(200).json({ user: data.user });
     } else {
-      res.status(400).json({ message: 'Invalid credentials' });
+      res.status(400).json({ message: data.error.message });
     }
   } else {
     res.setHeader('Allow', ['POST']);

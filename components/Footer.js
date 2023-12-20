@@ -71,7 +71,7 @@ const Footer = () => {
               ) : (
                 <FiClock size={18} className={classes['clock-icon']} />
               )}{' '}
-              <span className={classes['number-fix']}>9</span> AM -{' '}
+              <span className={classes['number-fix']}>10</span> AM -{' '}
               <span className={classes['number-fix']}>6</span> PM
             </p>
           </div>

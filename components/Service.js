@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import classes from '../styles/Service.module.css';
+import { useContext } from 'react';
+import AuthContext from '@/utils/AuthContext';
 
 const Service = ({
   name,
@@ -8,6 +10,7 @@ const Service = ({
   additionalDetails,
   dashboard = false,
 }) => {
+  const { user } = useContext(AuthContext);
   const durationTrimmed = duration.split('x')[1].trim();
   const durationTrimmedSplit = durationTrimmed.split(' ');
   const durationNumber = durationTrimmedSplit[0];
@@ -41,7 +44,7 @@ const Service = ({
       </div>
       {!dashboard && (
         <Link
-          href="https://salonlofts.com/ariana_h/schedule"
+          href={user ? '/account/dashboard' : '/account/login'}
           className={classes.btn}
         >
           BOOK APPOINTMENT

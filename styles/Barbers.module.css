@@ -16,3 +16,11 @@
   cursor: pointer;
   background: #bbb;
 }
+@media (max-width: 550px) {
+  .barbers-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 20px;
+  }
+}

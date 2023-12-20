@@ -1,25 +1,13 @@
 import { API_URL } from '@/config/index';
 import cookie from 'cookie';
+import { containsSpecialCharacters } from '@/utils/specialCharacterCheck';
 
 export default async (req, res) => {
   if (req.method === 'POST') {
-    const { name, rating, review } = req.body;
+    const { name, barber } = req.body;
     const { token } = cookie.parse(req.headers.cookie);
 
-    if (!name || !rating || !review) {
-      res.status(400).json({
-        message: 'Please fill out all fields',
-      });
-      return;
-    }
-
-    if (!token) {
-      res
-        .status(403)
-        .json({ message: 'Only registered users can leave reviews.' });
-    }
-
-    function checkInput(inputString) {
+    function checkBarberInput(inputString) {
       const specialCharacters = ['<', '>', '[', ']', '{', '}', '"'];
 
       for (let i = 0; i < inputString.length; i++) {
@@ -31,13 +19,32 @@ export default async (req, res) => {
       return false;
     }
 
-    if (checkInput(name) || checkInput(rating) || checkInput(review)) {
+    if (!token) {
+      res.status(403).json({ message: 'Unauthorized' });
+    }
+
+    if (containsSpecialCharacters(name)) {
       res.status(400).json({
-        message: 'Cannot use the following characters: <, >, [, ], {, }, "',
+        message:
+          'Name cannot contain the following characters: <, >, [, ], {, }, &, \', "',
       });
       return;
     }
-    const strapiRes = await fetch(`${API_URL}/api/testimonials`, {
+    if (checkBarberInput(barber)) {
+      res.status(400).json({
+        message:
+          'Barber cannot contain the following characters: <, >, [, ], {, }, "',
+      });
+      return;
+    }
+
+    const getBarbers = await fetch(`${API_URL}/api/barbers?populate=*`);
+    const allBarbers = await getBarbers.json();
+    const matchingBarber = allBarbers.data.filter((b) => {
+      return b.attributes.name === barber;
+    });
+
+    const strapiRes = await fetch(`${API_URL}/api/walk-ins`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -46,8 +53,7 @@ export default async (req, res) => {
       body: JSON.stringify({
         data: {
           name,
-          rating,
-          testimonial: review,
+          barber: matchingBarber[0].id,
         },
       }),
     });

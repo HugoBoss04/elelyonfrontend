@@ -16,14 +16,11 @@ import AuthContext from '@/utils/AuthContext';
 
 export default function Home({ allCollections }) {
   const { user } = useContext(AuthContext);
-  const [isDesktop, setIsDesktop] = useState(false);
 
   const router = useRouter();
   const { scrollTo } = router.query;
 
   useEffect(() => {
-    setIsDesktop(window.innerWidth >= 1000);
-
     if (scrollTo === 'contact') {
       const contactSection = document.getElementById('contact');
       if (contactSection) {
@@ -32,7 +29,6 @@ export default function Home({ allCollections }) {
     }
   }, [scrollTo]);
 
-  console.log(allCollections);
   return (
     <Layout title="El Elyon | Homepage">
       <div className="first-bg">
@@ -48,7 +44,7 @@ export default function Home({ allCollections }) {
             Empowering Men With Impeccable Grooming and Style
           </h2>
           <Link
-            href="https://salonlofts.com/ariana_h/schedule"
+            href={user ? '/account/dashboard' : '/account/login'}
             className={classes['hero-btn']}
           >
             book now

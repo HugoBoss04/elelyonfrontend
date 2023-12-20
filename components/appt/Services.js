@@ -14,11 +14,9 @@ const Services = ({ services, setActiveStep }) => {
       const filteredCategory = services.data.filter((service) => {
         return service.attributes.category === e.target.value;
       });
-      console.log(filteredCategory);
       setActiveServices(filteredCategory);
     }
   };
-
   const handleSelection = (e) => {
     setApptInfo({
       ...apptInfo,
@@ -47,7 +45,8 @@ const Services = ({ services, setActiveStep }) => {
       </div>
       <ul className={classes['services-container']}>
         {activeServices.map((service, index) => {
-          const { name, price, cuts, duration } = service.attributes;
+          const { name, price, duration, additionalDetails } =
+            service.attributes;
           return (
             <li
               className={classes.service}
@@ -56,7 +55,9 @@ const Services = ({ services, setActiveStep }) => {
               onClick={handleSelection}
               key={index}
             >
-              <p className={classes.heading}>{name}</p>
+              <p className={classes.heading}>
+                {name} {additionalDetails !== null && `(${additionalDetails})`}
+              </p>
               <div className={classes['info-container']}>
                 <p className={classes['info-text']}>Price: ${price}</p>
                 <p className={classes['info-text']}>Duration: {duration}</p>

@@ -2,8 +2,6 @@ import classes from '../styles/ClientGallery.module.css';
 import Image from 'next/image';
 
 const ClientGallery = ({ clientPictures }) => {
-  console.log(clientPictures);
-
   return (
     <div className={classes.container}>
       <div className={classes['title-container']}>

@@ -1,12 +1,16 @@
 import classes from '@/styles/Times.module.css';
 import AuthContext from '@/utils/AuthContext';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
-const Times = ({ setActiveStep, barbers }) => {
+const Times = ({ setActiveStep, barbers, appts }) => {
   const { setApptInfo, apptInfo } = useContext(AuthContext);
+  const [availability, setAvailability] = useState([]);
+  const [shiftStart, setShiftStart] = useState('');
+  const [shiftEnd, setShiftEnd] = useState('');
 
   let hoursArray = [];
   let skipIterations = 0;
+  let singleBarberWorking = false;
 
   //For loop which adds all time blocks to hoursArray.
   for (let i = 10; i <= 18; i++) {
@@ -65,38 +69,16 @@ const Times = ({ setActiveStep, barbers }) => {
     if (!isEndTime && !isApptTime) {
       dateTime.setHours(hours, parseInt(minutes, 10), 0, 0);
     } else if (isEndTime) {
-      dateTime.setHours(hours, parseInt(minutes, 10) - 30, 0, 0);
+      dateTime.setHours(hours, parseInt(minutes, 10), 0, 0);
     } else {
-      dateTime.setHours(hours, parseInt(minutes, 10) - 45, 0, 0);
+      dateTime.setHours(hours, parseInt(minutes, 10), 0, 0);
     }
 
     return dateTime;
   }
 
-  function isTimeEarlier(scheduleStartTime, scheduleEndTime, time) {
-    // Function to convert time string to a date object
-
-    // Convert all times to date objects
-    const scheduleStartDateTime = convertToDateTime(
-      scheduleStartTime,
-      false,
-      false
-    );
-    const scheduleEndDateTime = convertToDateTime(scheduleEndTime, true, false);
-    const timeDateTime = convertToDateTime(time, false, false);
-
-    // Compare the two times
-    if (
-      timeDateTime < scheduleStartDateTime ||
-      timeDateTime >= scheduleEndDateTime
-    ) {
-      return true;
-    }
-
-    return false;
-  }
-
-  const checkAvailability = (time) => {
+  const checkBarberAvailability = (time) => {
+    let barberIsNotAvailable = false;
     //Get the selected barber
     const selectedBarber = barbers.data.filter((barber) => {
       return barber.attributes.name === apptInfo.barber;
@@ -111,16 +93,8 @@ const Times = ({ setActiveStep, barbers }) => {
     const timesForAppts = apptsForCurrentDay.map((appt) => {
       return formatTimeString(appt.attributes.time);
     });
-    //Get the corresponding schedule for selected day
-    const matchingScheduleDay = selectedBarber.attributes.schedules.data.filter(
-      (schedule) => {
-        return schedule.attributes.date === apptInfo.date;
-      }
-    );
 
     //Extract clock in and out hours
-    const scheduleStartTime = matchingScheduleDay[0].attributes.startTime;
-    const scheduleEndTime = matchingScheduleDay[0].attributes.endTime;
 
     if (timesForAppts.length > 0) {
       timesForAppts.forEach((apptTime) => {
@@ -130,66 +104,251 @@ const Times = ({ setActiveStep, barbers }) => {
 
         if (apptTimeFormatted.getTime() === currentTimeFormatted.getTime()) {
           //If they are equal, next 6 time blocks will be unavailable
-          skipIterations = 6;
+          barberIsNotAvailable = true;
         }
       });
     }
 
-    if (
-      isTimeEarlier(scheduleStartTime, scheduleEndTime, time) ||
-      timesForAppts.includes(time)
-    ) {
-      skipIterations = 3;
-      return false;
-    }
-    return true;
+    return barberIsNotAvailable;
   };
+
+  function convertTime12to24(time12h) {
+    const [time, modifier] = time12h.split(' ');
+    let [hours, minutes] = time.split(':');
+
+    // Convert hour from 12-hour to 24-hour format
+    if (hours === '12') {
+      hours = '00';
+    }
+    if (modifier === 'PM') {
+      hours = parseInt(hours, 10) + 12;
+    }
+
+    // Return the formatted time
+    return `${hours.toString().padStart(2, '0')}:${minutes}:00.000`;
+  }
+
+  function isTimeWithinShift(shiftStart, shiftEnd, time) {
+    // Helper function to convert time string to Date object
+    const parseTime = (timeStr, is12HourFormat = false) => {
+      const [timePart, modifier] = timeStr.split(' ');
+      let [hours, minutes] = timePart.split(':');
+
+      if (is12HourFormat) {
+        hours = (parseInt(hours, 10) % 12) + (modifier === 'PM' ? 12 : 0);
+      }
+
+      const date = new Date();
+      date.setHours(hours, minutes, 0, 0); // Resetting seconds and milliseconds
+      return date;
+    };
+
+    const start = parseTime(shiftStart);
+    let end = parseTime(shiftEnd);
+
+    end = new Date(end.getTime());
+
+    const currentTime = parseTime(time, true);
+
+    // Check if currentTime is between start and 45 min before end
+    return currentTime >= start && currentTime <= end;
+  }
+
+  const checkAllBarbersAvailability = (time) => {
+    // Filter out the "Any" barber and then map
+    const barbersWorkingThatDay = barbers.data
+      .filter((barber) => barber.attributes.name !== 'Any')
+      .map((barber) => {
+        const barbersSchedule = barber.attributes.schedules.data.filter(
+          (schedule) => schedule.attributes.date === apptInfo.date
+        );
+
+        // Check if there's a schedule and return the required object
+        if (barbersSchedule.length > 0) {
+          return {
+            name: barber.attributes.name,
+            schedule: barbersSchedule[0], // Assuming you want the first schedule
+          };
+        }
+        return null;
+      })
+      .filter((item) => item !== null); // Filter out null values
+    if (barbersWorkingThatDay.length === 1) {
+      singleBarberWorking = true;
+    }
+
+    const appointmentsAtThisTime = appts.data.filter((appt) => {
+      return (
+        appt.attributes.date === apptInfo.date &&
+        appt.attributes.time === convertTime12to24(time)
+      );
+    });
+
+    // Filter barbers working during the selected time
+    const barbersWorkingAtThisTime = barbersWorkingThatDay.filter((barber) => {
+      const { startTime, endTime } = barber.schedule.attributes;
+      return isTimeWithinShift(startTime, endTime, time);
+    });
+
+    if (barbersWorkingAtThisTime.length <= appointmentsAtThisTime.length) {
+      return true;
+    }
+    return false;
+  };
+
+  function isEarlierThanNow(date, time) {
+    // Combine date and time into a single string
+    const dateTimeStr = date + 'T' + time;
+
+    // Create a Date object from the combined string
+    const dateTime = new Date(dateTimeStr);
+
+    // Get the current date and time
+    const now = new Date();
+
+    // Compare and return the result
+    if (dateTime < now) {
+      return true;
+    }
+    return false;
+  }
+
+  function changeTimeByMinutes(timeStr, minutes) {
+    const [hours, minutesPart] = timeStr.split(':');
+    const [mins, period] = minutesPart.split(' ');
+
+    let time = new Date();
+    time.setHours(
+      (hours % 12) + (period === 'PM' ? 12 : 0),
+      parseInt(mins, 10) + minutes,
+      0,
+      0
+    );
+
+    const adjustedHours = time.getHours();
+    const adjustedMinutes = time.getMinutes();
+    const newPeriod = adjustedHours >= 12 ? 'PM' : 'AM';
+    const formattedHours = (adjustedHours % 12 === 0 ? 12 : adjustedHours % 12)
+      .toString()
+      .padStart(2, '0');
+    const formattedMinutes = adjustedMinutes.toString().padStart(2, '0');
+
+    return `${formattedHours}:${formattedMinutes} ${newPeriod}`;
+  }
+
+  useEffect(() => {
+    let updatedAvailability = hoursArray.reduce(
+      (acc, time) => ({ ...acc, [time]: true }),
+      {}
+    );
+
+    hoursArray.forEach((time) => {
+      if (isEarlierThanNow(apptInfo.date, convertTime12to24(time))) {
+        updatedAvailability[time] = false;
+      }
+      if (apptInfo.barber === 'Any') {
+        if (checkAllBarbersAvailability(time)) {
+          updatedAvailability[time] = false;
+
+          // Mark the adjacent two time blocks as unavailable
+          const timeBefore1 = changeTimeByMinutes(time, -15);
+          const timeBefore2 = changeTimeByMinutes(time, -30);
+          const timeAfter1 = changeTimeByMinutes(time, 15);
+          const timeAfter2 = changeTimeByMinutes(time, 30);
+
+          [timeBefore1, timeBefore2, timeAfter1, timeAfter2].forEach(
+            (adjacentTime) => {
+              if (updatedAvailability.hasOwnProperty(adjacentTime)) {
+                updatedAvailability[adjacentTime] = false;
+              }
+            }
+          );
+        }
+        // Get the keys of the object (the time slots)
+        const timeSlots = Object.keys(updatedAvailability);
+
+        // Get the last three time slots
+        const lastThreeSlots = timeSlots.slice(-3);
+
+        // Set the value of the last three time slots to false
+        lastThreeSlots.forEach((timeSlot) => {
+          updatedAvailability[timeSlot] = false;
+        });
+      }
+
+      if (apptInfo.barber !== 'Any') {
+        if (
+          !isTimeWithinShift(
+            shiftStart,
+            convertTime12to24(
+              changeTimeByMinutes(formatTimeString(shiftEnd), -45)
+            ),
+            time
+          )
+        ) {
+          updatedAvailability[time] = false;
+        }
+        if (
+          checkAllBarbersAvailability(time) ||
+          checkBarberAvailability(time)
+        ) {
+          updatedAvailability[time] = false;
+
+          // Mark the adjacent two time blocks as unavailable
+          const timeBefore1 = changeTimeByMinutes(time, -15);
+          const timeBefore2 = changeTimeByMinutes(time, -30);
+          const timeAfter1 = changeTimeByMinutes(time, 15);
+          const timeAfter2 = changeTimeByMinutes(time, 30);
+
+          [timeBefore1, timeBefore2, timeAfter1, timeAfter2].forEach(
+            (adjacentTime) => {
+              if (updatedAvailability.hasOwnProperty(adjacentTime)) {
+                updatedAvailability[adjacentTime] = false;
+              }
+            }
+          );
+        }
+      }
+    });
+
+    setAvailability(updatedAvailability);
+  }, [barbers, appts, apptInfo.date, apptInfo.barber, shiftStart, shiftEnd]);
+
+  useEffect(() => {
+    const selectedBarber = barbers.data.filter((barber) => {
+      return barber.attributes.name === apptInfo.barber;
+    })[0];
+    const matchingScheduleDay = selectedBarber.attributes.schedules.data.filter(
+      (schedule) => {
+        return schedule.attributes.date === apptInfo.date;
+      }
+    );
+    setShiftStart(matchingScheduleDay[0].attributes.startTime);
+    setShiftEnd(matchingScheduleDay[0].attributes.endTime);
+  }, []);
 
   return (
     <ul className={classes['times-container']}>
       {hoursArray.map((time, index) => {
-        if (skipIterations > 0) {
-          skipIterations--;
-          return (
-            <li className={`${classes['na']}`} key={index}>
-              {time}
-            </li>
-          );
-        }
-        if (apptInfo.barber === 'Any') {
-          return (
-            <li
-              className={classes.time}
-              data-time={time}
-              onClick={handleSelection}
-              key={index}
-            >
-              {time}
-            </li>
-          );
-        } else {
-          const isAvailable = checkAvailability(time);
-          if (!isAvailable) {
-            return (
-              <li className={`${classes['na']}`} key={index}>
-                {time}
-              </li>
-            );
-          } else {
-            return (
-              <li
-                className={classes.time}
-                data-time={time}
-                onClick={handleSelection}
-                key={index}
-              >
-                {time}
-              </li>
-            );
-          }
-        }
+        const isUnavailable = !availability[time];
+        const timeClass = isUnavailable ? `${classes['na']}` : classes.time;
+        const handleClick = isUnavailable
+          ? undefined
+          : (e) => handleSelection(e);
+
+        return (
+          <li
+            className={timeClass}
+            data-time={time}
+            onClick={handleClick}
+            key={index}
+          >
+            {time}
+          </li>
+        );
       })}
     </ul>
   );
 };
+
 export default Times;

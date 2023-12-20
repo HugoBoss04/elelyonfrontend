@@ -21,9 +21,8 @@ import qs from 'qs';
 import cookie from 'cookie';
 import DashboardSkeleton from '@/components/skeletons/Dashboard';
 
-const DashboardPage = ({ allCollections }) => {
-  const { logout, user, error } = useContext(AuthContext);
-  const [editState, setEditState] = useState(false);
+const DashboardPage = ({ allCollections, appts }) => {
+  const { logout, user, error, setError } = useContext(AuthContext);
   const [deleteState, setDeleteState] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -51,10 +50,10 @@ const DashboardPage = ({ allCollections }) => {
 
     const data = await res.json();
 
-    if (data.status === 200) {
+    if (res.ok) {
       router.reload();
     } else {
-      setComponentError('Something went wrong. Please try again.');
+      setError('Something went wrong. Please try again.');
     }
   };
 
@@ -104,7 +103,6 @@ const DashboardPage = ({ allCollections }) => {
   }
 
   useEffect(() => {
-    console.log(user);
     if (activeStep > 0) {
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
@@ -115,7 +113,7 @@ const DashboardPage = ({ allCollections }) => {
     if (user) {
       setSelectedService(
         services.data.filter((service) => {
-          return service.attributes.name === user?.appointment?.service;
+          return service.attributes.name === user?.appointment?.service?.name;
         })
       );
       setLoading(false);
@@ -129,7 +127,7 @@ const DashboardPage = ({ allCollections }) => {
       <Layout title="El Elyon | My Profile">
         <div className="first-bg">
           <div className={classes.container}>
-            <h2 className={classes.greeting}>Hi Hugo,</h2>
+            <h2 className={classes.greeting}>Hi {user?.firstName},</h2>
             {user?.appointment?.date && user?.appointment?.time ? (
               <>
                 <h4 className={classes.msg}>
@@ -137,9 +135,13 @@ const DashboardPage = ({ allCollections }) => {
                 </h4>
                 <div className={classes['appt-container']}>
                   <div className={classes['header-section']}>
-                    <h2 className={classes.header}>
+                    <h2
+                      className={`${classes.header} ${classes['header-mobile']}`}
+                    >
                       El Elyon -{' '}
-                      <p className={classes.subheader}>
+                      <p
+                        className={`${classes.subheader} ${classes['subheader-mobile']}`}
+                      >
                         {' '}
                         23541 Westheimer Pkwy, Katy, TX 77494
                       </p>
@@ -153,11 +155,11 @@ const DashboardPage = ({ allCollections }) => {
                     </h4>
                     <h4
                       className={classes['info-text']}
-                    >{`Barber: ${user?.appointment?.barber?.name}`}</h4>
+                    >{`Barber: ${user?.appointment?.barbers[0]?.name}`}</h4>
                   </div>
                   <div className={classes['info-section-two']}>
                     <h4 className={classes['info-text']}>
-                      {`Requested Service: ${user?.appointment?.service} - $${selectedService[0]?.attributes?.price}`}
+                      {`Requested Service: ${user?.appointment?.service?.name} - $${selectedService[0]?.attributes?.price}`}
                     </h4>
                     <h4 className={classes['info-text']}>
                       Estimated Duration: 30 min.
@@ -194,13 +196,16 @@ const DashboardPage = ({ allCollections }) => {
                       </p>
                     </div>
                   )}
-                </div>
-                {componentError ||
-                  (error && (
-                    <p className={classes['component-error-msg']}>
-                      {componentError ? componentError : error}
+                  {error && (
+                    <p
+                      className={`${classes['status-msg']} ${
+                        error && classes['error-msg']
+                      }`}
+                    >
+                      {error}
                     </p>
-                  ))}
+                  )}
+                </div>
                 <button
                   className={`${classes.btn} ${classes['logout-btn']} ${classes['appt-present-logout-btn']}`}
                   onClick={handleLogout}
@@ -292,7 +297,11 @@ const DashboardPage = ({ allCollections }) => {
                 />
               )}
               {activeStep === 4 && (
-                <Times setActiveStep={setActiveStep} barbers={barbers} />
+                <Times
+                  setActiveStep={setActiveStep}
+                  barbers={barbers}
+                  appts={appts}
+                />
               )}
               {activeStep === 5 && (
                 <ConfirmAppt
@@ -324,6 +333,29 @@ export async function getServerSideProps(context) {
     };
   }
 
+  if (token) {
+    const strapiRes = await fetch(`${API_URL}/api/users/me`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const data = await strapiRes.json();
+
+    console.log(data);
+
+    if (data.username === 'admin') {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
+  }
+
   const query = qs.stringify({
     populate: {
       barbers: {
@@ -337,7 +369,10 @@ export async function getServerSideProps(context) {
   const res = await fetch(`${API_URL}/api/all-collections?${query}`);
   const allCollections = await res.json();
 
+  const res2 = await fetch(`${API_URL}/api/appointments?populate=*`);
+  const appointments = await res2.json();
+
   return {
-    props: { allCollections },
+    props: { allCollections, appts: appointments },
   };
 }

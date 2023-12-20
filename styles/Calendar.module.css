@@ -54,3 +54,8 @@
   cursor: pointer;
   background: #bbbbbb;
 }
+@media (max-width: 550px) {
+  .cell {
+    height: 50px;
+  }
+}

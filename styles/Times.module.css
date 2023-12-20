@@ -28,3 +28,8 @@
   list-style: none;
   background: #777;
 }
+@media (max-width: 550px) {
+  .times-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

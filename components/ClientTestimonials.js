@@ -27,14 +27,14 @@ const ClientTestimonials = ({ testimonials, user }) => {
   }
   const forwardNav = () => {
     if (!isDesktop) {
-      if (activeTestimonial + 1 > testimonials.length - 1) {
-        setActiveTestimonial(testimonials.length - 1);
+      console.log(testimonials.data.length);
+      if (activeTestimonial + 1 > testimonials.data.length - 1) {
+        setActiveTestimonial(testimonials.data.length - 1);
       } else {
         setActiveTestimonial(activeTestimonial + 1);
       }
       return;
     }
-
     if (activeTestimonialsContainer + 1 > containers.length - 1) {
       setActiveTestimonialsContainer(containers.length - 1);
     } else {
@@ -57,7 +57,7 @@ const ClientTestimonials = ({ testimonials, user }) => {
       setActiveTestimonialsContainer(activeTestimonialsContainer - 1);
     }
   };
-  console.log(activeTestimonialsContainer);
+
   return (
     <div className={classes.container}>
       <div className={classes['title-container']}>
@@ -68,7 +68,7 @@ const ClientTestimonials = ({ testimonials, user }) => {
       <div className={classes['content-container']}>
         {!isDesktop
           ? testimonials.data.map((currentTestimonial, index) => {
-              const { name, testimonial, stars } =
+              const { name, testimonial, rating } =
                 currentTestimonial.attributes;
               return (
                 <div
@@ -80,11 +80,7 @@ const ClientTestimonials = ({ testimonials, user }) => {
                   <h3 className={classes.name}>{name}</h3>
                   <p className={classes.text}>{testimonial}</p>
                   <div className={classes['stars-container']}>
-                    <IoStarSharp size={24} className={classes.icon} />
-                    <IoStarSharp size={24} className={classes.icon} />
-                    <IoStarSharp size={24} className={classes.icon} />
-                    <IoStarSharp size={24} className={classes.icon} />
-                    <IoStarSharp size={24} className={classes.icon} />
+                    <Rating rating={rating} />
                   </div>
                 </div>
               );
@@ -102,7 +98,7 @@ const ClientTestimonials = ({ testimonials, user }) => {
                 key={index}
               >
                 {container.map((currentTestimonial, testimonialIndex) => {
-                  const { name, testimonial, stars } =
+                  const { name, testimonial, rating } =
                     currentTestimonial.attributes;
                   return (
                     <div
@@ -116,7 +112,7 @@ const ClientTestimonials = ({ testimonials, user }) => {
                       <h3 className={classes.name}>{name}</h3>
                       <p className={classes.text}>{testimonial}</p>
                       <div className={classes['stars-container']}>
-                        <Rating rating={stars} />
+                        <Rating rating={rating} />
                       </div>
                     </div>
                   );
@@ -134,7 +130,7 @@ const ClientTestimonials = ({ testimonials, user }) => {
           onClick={forwardNav}
         />
       </div>
-      {user && (
+      {user.username !== '' && (
         <p
           className={classes['review-btn']}
           onClick={() => router.push('/review')}

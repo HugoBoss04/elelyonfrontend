@@ -5,6 +5,8 @@ import { containsSpecialCharacters } from '@/utils/specialCharacterCheck';
 export default async (req, res) => {
   const formatNumber = (number) => {
     let value = number.replace(/\D/g, ''); // Remove all non-digits
+    value = value.slice(0, 10); // Limit to first 10 digits
+
     if (value.length > 3 && value.length <= 6) {
       value = value.slice(0, 3) + '-' + value.slice(3);
     } else if (value.length > 6) {
@@ -33,7 +35,7 @@ export default async (req, res) => {
       !reminderType
     ) {
       res.status(400).json({
-        message: 'Please fill out all fields',
+        message: 'Please fill out all fields.',
       });
     }
 
@@ -92,7 +94,7 @@ export default async (req, res) => {
     if (strapiRes.ok) {
       res.status(200).json({ message: 'Success!! Please check your email.' });
     } else {
-      res.status(data.error.status).json({ message: data.error.message });
+      res.status(data.error.status).json({ data, message: data.error.message });
     }
   } else {
     res.setHeader('Allow', ['POST']);

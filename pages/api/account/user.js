@@ -12,12 +12,13 @@ export default async (req, res) => {
     const query = qs.stringify({
       populate: {
         appointment: {
-          populate: ['barber'],
+          populate: ['barbers', 'service'],
         },
       },
     });
 
     const { token } = cookie.parse(req.headers.cookie);
+
     const strapiRes = await fetch(`${API_URL}/api/users/me?${query}`, {
       method: 'GET',
       headers: {
@@ -30,7 +31,7 @@ export default async (req, res) => {
     if (strapiRes.ok) {
       res.status(200).json({ user });
     } else {
-      res.status(403).json({ message: 'User Forbidden' });
+      res.status(403).json({ message: 'User Forbidden', user });
     }
   } else {
     res.setHeader('Allow', ['GET']);

@@ -89,19 +89,6 @@ export default function Calendar({ setActiveStep, barbers, schedules }) {
     return dates.includes(currentDateString);
   };
 
-  const checkIfDayIsAvailable = (i) => {
-    //Extracts the dates from all schedules available.
-    const allScheduleDates = schedules.data.map((schedule) => {
-      return schedule.attributes.date;
-    });
-    // Convert currentDate object to a string in 'YYYY-MM-DD' format
-    const currentDateString = `${date.getFullYear()}-${String(
-      date.getMonth() + 1
-    ).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
-    //Checks to see if currentDateString matches any values in dates array
-    return allScheduleDates.includes(currentDateString);
-  };
-
   //Pads the week with the days from the previous month if applicable
   const firstDay = getFirstDayOfMonth(date.getFullYear(), date.getMonth());
   let days = [];
@@ -114,7 +101,7 @@ export default function Calendar({ setActiveStep, barbers, schedules }) {
     const currentDate = new Date(date.getFullYear(), date.getMonth(), i);
     const dateIsPast = isPast(currentDate);
     if (apptInfo.barber === 'Any') {
-      const dayIsAvailable = checkIfDayIsAvailable(i);
+      const dayIsAvailable = checkSchedule(apptInfo.barber, i);
       if (dateIsPast || !dayIsAvailable) {
         days.push(
           <td key={i} className={`${classes.cell}`}>

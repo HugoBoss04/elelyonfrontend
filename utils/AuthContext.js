@@ -5,7 +5,12 @@ import { NEXT_URL } from '../config';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    username: '',
+  });
+  const [adminUser, setAdminUser] = useState({
+    username: '',
+  });
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
   const [apptInfo, setApptInfo] = useState({
@@ -15,12 +20,43 @@ export const AuthProvider = ({ children }) => {
     time: '',
     price: '',
   });
-
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    number: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    reminderType: '',
+  });
   const router = useRouter();
 
   useEffect(() => {
     checkUserLoggedIn();
   }, []);
+
+  useEffect(() => {
+    let errorTimeout;
+    let successMsgTimeout;
+
+    if (error !== '') {
+      errorTimeout = setTimeout(() => {
+        setError('');
+      }, 5000);
+    }
+
+    if (successMsg !== '') {
+      successMsgTimeout = setTimeout(() => {
+        setSuccessMsg('');
+      }, 5000);
+    }
+
+    // Clear timeouts if error or successMsg changes before the 3 seconds are up
+    return () => {
+      if (errorTimeout) clearTimeout(errorTimeout);
+      if (successMsgTimeout) clearTimeout(successMsgTimeout);
+    };
+  }, [error, successMsg]);
 
   const register = async (user) => {
     const res = await fetch(`${NEXT_URL}/api/account/register`, {
@@ -35,9 +71,18 @@ export const AuthProvider = ({ children }) => {
 
     if (res.ok) {
       setSuccessMsg(data.message);
+      setFormData({
+        firstName: '',
+        lastName: '',
+        number: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        reminderType: '',
+      });
     } else {
-      console.log(data);
       setError(data.message);
+      console.log(data);
     }
   };
 
@@ -58,7 +103,6 @@ export const AuthProvider = ({ children }) => {
     const data = await res.json();
 
     if (res.ok) {
-      console.log(data.user);
       setUser(data.user);
       router.push('/account/dashboard');
     } else {
@@ -70,6 +114,33 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const adminLogin = async ({ email: identifier, password }) => {
+    const res = await fetch(`${NEXT_URL}/api/account/admin-login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        identifier,
+        password,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      setAdminUser(data.user);
+      router.push('/account/admin/dashboard');
+    } else {
+      if (data.message === 'Invalid identifier or password') {
+        setError('Invalid credentials');
+      } else {
+        setError(data.message);
+      }
+      console.log(data);
+    }
+  };
+
   //Logout
   const logout = async () => {
     const res = await fetch(`${NEXT_URL}/api/account/logout`, {
@@ -77,7 +148,12 @@ export const AuthProvider = ({ children }) => {
     });
 
     if (res.ok) {
-      setUser(null);
+      setUser({
+        username: '',
+      });
+      setAdminUser({
+        username: '',
+      });
     } else {
       setError('Error occurred while trying to log out. Please try again.');
     }
@@ -135,9 +211,18 @@ export const AuthProvider = ({ children }) => {
     const data = await res.json();
 
     if (res.ok) {
-      setUser(data.user);
+      if (data.user.username === 'admin') {
+        setAdminUser(data.user);
+      } else {
+        setUser(data.user);
+      }
     } else {
-      setUser(null);
+      setUser({
+        username: '',
+      });
+      setAdminUser({
+        username: '',
+      });
     }
   };
 
@@ -157,6 +242,11 @@ export const AuthProvider = ({ children }) => {
         resetPassword,
         setApptInfo,
         apptInfo,
+        adminLogin,
+        adminUser,
+        setAdminUser,
+        formData,
+        setFormData,
       }}
     >
       {children}

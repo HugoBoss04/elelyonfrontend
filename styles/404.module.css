@@ -1,0 +1,16 @@
+.first-background {
+  min-height: calc(100vh - 227px);
+  background: #fff;
+  margin-top: 96px;
+}
+.container {
+  max-width: 80vw;
+  margin: 0 auto;
+  padding: 60px 0;
+  text-align: center;
+}
+.header {
+  font-weight: 400;
+  font-size: 32px;
+  margin-bottom: 10px;
+}

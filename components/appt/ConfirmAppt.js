@@ -1,11 +1,13 @@
+import { useContext, useEffect, useState } from 'react';
 import AuthContext from '@/utils/AuthContext';
 import classes from '@/styles/ConfirmAppt.module.css';
-import { useContext } from 'react';
 import { NEXT_URL } from '@/config/index';
 import { useRouter } from 'next/router';
 
-const ConfirmAppt = ({ setActiveStep, setComponentError }) => {
-  const { setApptInfo, apptInfo, user } = useContext(AuthContext);
+const ConfirmAppt = ({ setActiveStep }) => {
+  const { setApptInfo, apptInfo, setError, error } = useContext(AuthContext);
+  const [isDesktop, setIsDesktop] = useState(false);
+
   const { service, barber, date, time, price } = apptInfo;
   const priceToNum = +price;
 
@@ -19,12 +21,10 @@ const ConfirmAppt = ({ setActiveStep, setComponentError }) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        user,
         service,
         barber,
         date,
         time,
-        price: priceToNum,
       }),
     });
     const data = await res.json();
@@ -32,7 +32,7 @@ const ConfirmAppt = ({ setActiveStep, setComponentError }) => {
     if (res.ok) {
       router.reload();
     } else {
-      console.log(data);
+      setError(data.message);
     }
   };
   const handleCancel = () => {
@@ -71,7 +71,16 @@ const ConfirmAppt = ({ setActiveStep, setComponentError }) => {
     // Return the formatted date string
     return `${monthName} ${parseInt(day, 10)}, ${year}`;
   };
-  return (
+
+  useEffect(() => {
+    setIsDesktop(window.innerWidth >= 1000);
+  }, []);
+
+  useEffect(() => {
+    console.log(error);
+  }, [error]);
+
+  return isDesktop ? (
     <>
       <table className={classes['appt-container']}>
         <thead>
@@ -94,12 +103,55 @@ const ConfirmAppt = ({ setActiveStep, setComponentError }) => {
         </tbody>
       </table>
       <div className={classes['btns-container']}>
+        {error && (
+          <p
+            className={`${classes['status-msg']} ${
+              error && classes['error-msg']
+            }`}
+          >
+            {error}
+          </p>
+        )}
         <button className={classes['confirm-btn']} onClick={handleConfirm}>
           Confirm
         </button>
         <button className={classes['cancel-btn']} onClick={handleCancel}>
           Cancel
         </button>
+      </div>
+    </>
+  ) : (
+    <>
+      <div className={classes['appt-container-mobile']}>
+        <div className={classes.header}>Service:</div>
+        <div className={classes.cell}>{service}</div>
+
+        <div className={classes.header}>Time:</div>
+        <div className={classes.cell}>
+          {convertDateFormat(date)} - {time}
+        </div>
+
+        <div className={classes.header}>Barber:</div>
+        <div className={classes.cell}>{barber}</div>
+
+        <div className={classes.header}>Price:</div>
+        <div className={classes.cell}>${priceToNum.toFixed(2)}</div>
+
+        <button className={classes['confirm-btn']} onClick={handleConfirm}>
+          Confirm
+        </button>
+        <button className={classes['cancel-btn']} onClick={handleCancel}>
+          Cancel
+        </button>
+        {error && (
+          <p
+            className={`${classes['status-msg']} ${
+              error && classes['error-msg']
+            }`}
+          >
+            {error}
+          </p>
+        )}
       </div>
     </>
   );

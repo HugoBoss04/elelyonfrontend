@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 
 const FeaturedServices = ({ services }) => {
   const [isDesktop, setIsDesktop] = useState(false);
-
+  console.log(services);
   useEffect(() => {
     setIsDesktop(window.innerWidth >= 1000);
   }, []);
@@ -32,20 +32,22 @@ const FeaturedServices = ({ services }) => {
           </div>
         ) : (
           <div className={classes['services-container']}>
-            {services.data.map((service) => {
-              const { name, price } = service.attributes;
-              return (
-                <div className={classes['service']}>
-                  <p className={classes.label}>{name}</p>
-                  <div className={classes['line-container']}>
-                    <div className={classes['service-line']}></div>
+            {services.data
+              .filter((service) => service.attributes.featured === true)
+              .map((service, index) => {
+                const { name, price } = service.attributes;
+                return (
+                  <div className={classes['service']} key={index}>
+                    <p className={classes.label}>{name}</p>
+                    <div className={classes['line-container']}>
+                      <div className={classes['service-line']}></div>
+                    </div>
+                    <p className={`${classes.value} ${classes['number-fix']}`}>
+                      ${price.toFixed(2)}
+                    </p>
                   </div>
-                  <p className={`${classes.value} ${classes['number-fix']}`}>
-                    ${price.toFixed(2)}
-                  </p>
-                </div>
-              );
-            })}
+                );
+              })}
             <Link href="/services" className={classes['desktop-service-btn']}>
               view all services
               <BsScissors

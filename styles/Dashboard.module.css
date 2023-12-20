@@ -223,8 +223,99 @@
 .appt-present-logout-btn {
   margin: 30px 0 0 0;
 }
-.component-error-msg {
-  margin-top: 15px;
+.error-msg {
+  padding-left: 15px;
+  padding-bottom: 15px;
   font-size: 18px;
   color: #e91212;
+}
+.header-mobile {
+  font-size: 18px;
+  padding: 20px 15px;
+}
+.subheader-mobile {
+  font-size: 14px;
+}
+@media (max-width: 550px) {
+  .container {
+    max-width: 90vw;
+  }
+  .greeting {
+    text-align: center;
+  }
+  .msg {
+    text-align: center;
+  }
+  .btn {
+    width: 250px;
+    display: block;
+    margin: 0 auto 15px;
+  }
+  .logout-btn {
+    margin: 0 auto 15px;
+    background: #777;
+  }
+  .featured-container {
+    margin-top: 30px;
+  }
+  .services-container {
+    margin-bottom: 30px;
+    grid-template-columns: 90vw;
+    grid-template-rows: repeat(3, 1fr);
+    column-gap: 0px;
+    align-items: center;
+    justify-content: center;
+  }
+  .schedule-header {
+    text-align: center;
+    margin-right: 20px;
+  }
+  .schedule-container {
+    position: absolute;
+    width: 100vw;
+    max-height: 700px;
+    padding: 20px 20px 40px 20px;
+  }
+  .appt-container {
+    width: 100%;
+    margin-bottom: 30px;
+    border: 1px solid #4e4d4d;
+  }
+  .info-section-one {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  .info-section-two {
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  .info-text:first-child {
+    margin-bottom: 15px;
+  }
+  .options-section {
+    padding: 10px 15px 30px;
+    justify-content: flex-start;
+  }
+  .delete-section {
+    padding: 15px 15px 0 15px;
+  }
+  .btns-container {
+    justify-self: flex-start;
+  }
+  .delete-btn {
+    padding: 8px 15px;
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+  .keep-btn {
+    padding: 8px 15px;
+    margin-right: 0px;
+    font-size: 14px;
+  }
 }

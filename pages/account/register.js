@@ -9,17 +9,15 @@ import AuthContext from 'utils/AuthContext';
 import aboutImg from '../../public/images/about-section-img.jpg';
 
 const RegisterPage = () => {
-  const { register, error, setError, successMsg, setSuccessMsg } =
-    useContext(AuthContext);
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    number: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    reminderType: '',
-  });
+  const {
+    register,
+    error,
+    setError,
+    successMsg,
+    setSuccessMsg,
+    formData,
+    setFormData,
+  } = useContext(AuthContext);
 
   const changeHandler = (e) => {
     const property = e.target.name;
@@ -78,7 +76,7 @@ const RegisterPage = () => {
                 name="number"
                 className={classes.input}
                 onChange={changeHandler}
-                placeholder="Phone Number"
+                placeholder="Phone Number (Ex: 123-123-1234)"
                 value={formData.number}
               />
               <input

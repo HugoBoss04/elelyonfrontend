@@ -56,3 +56,39 @@
   cursor: pointer;
   color: #e3e3e3;
 }
+.status-msg {
+  width: fit-content;
+}
+.error-msg {
+  color: #e91212;
+}
+.appt-container-mobile {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: auto auto; /* Two columns: one for headers, one for data */
+  align-items: center;
+  gap: 10px; /* Space between rows and columns */
+  /* Add more styling as needed */
+}
+@media (max-width: 550px) {
+  .header {
+    margin-bottom: 15px;
+    padding-bottom: 0px;
+    text-transform: none;
+    border-bottom: none;
+  }
+  .cell {
+    margin-bottom: 15px;
+    padding-top: 0px;
+    width: 100%;
+    text-align: start;
+  }
+  .confirm-btn,
+  .cancel-btn {
+    margin-top: 15px;
+  }
+  .status-msg {
+    margin-top: 15px;
+    grid-column: 1 / -1;
+  }
+}

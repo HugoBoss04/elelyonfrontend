@@ -8,19 +8,17 @@ import { useRouter } from 'next/router';
 import AuthContext from '@/utils/AuthContext';
 import ReviewPageSkeleton from '@/components/skeletons/ReviewPage';
 import { NEXT_URL } from '../config';
+import cookie from 'cookie';
 
 const ReviewPage = () => {
-  const { user } = useContext(AuthContext);
+  const { user, error, setError, successMsg, setSuccessMsg } =
+    useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     name: '',
     rating: 5,
     review: '',
   });
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
-
-  // `${user.firstName} ${user.lastName}`
 
   const router = useRouter();
 
@@ -40,18 +38,19 @@ const ReviewPage = () => {
     const data = await res.json();
 
     if (res.ok) {
-      setSuccess(
+      setSuccessMsg(
         'Success! Your review is being approved. Redirecting to homepage...'
       );
       setFormData({
         ...formData,
+        rating: 5,
         review: '',
       });
       setTimeout(() => {
         router.push('/');
       }, 3000);
     } else {
-      console.log(data);
+      setError(data.message);
     }
   };
 
@@ -63,9 +62,6 @@ const ReviewPage = () => {
     });
     router.push('/');
   };
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
   useEffect(() => {
     if (user !== null) {
       setFormData({ ...formData, name: `${user.firstName} ${user.lastName}` });
@@ -124,9 +120,9 @@ const ReviewPage = () => {
                 setFormData({ ...formData, review: e.target.value })
               }
             />
-            {(error || success) && (
+            {(error || successMsg) && (
               <p className={`${error ? classes.error : classes.success}`}>{`${
-                error ? error : success
+                error ? error : successMsg
               }`}</p>
             )}
             <div className={classes['btns-container']}></div>
@@ -152,3 +148,32 @@ const ReviewPage = () => {
   );
 };
 export default ReviewPage;
+
+export async function getServerSideProps(context) {
+  const { req } = context;
+  const browserCookie = req.headers.cookie;
+
+  if (browserCookie) {
+    const { token } = cookie.parse(browserCookie);
+
+    if (!token) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
+  } else {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}

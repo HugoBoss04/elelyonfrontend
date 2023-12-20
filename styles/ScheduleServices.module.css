@@ -22,7 +22,6 @@
   font-weight: 500;
 }
 .info-container {
-  padding: 0 20px;
   display: flex;
   justify-content: center;
   column-gap: 30px;
@@ -53,4 +52,12 @@
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+}
+@media (max-width: 550px) {
+  .services-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 20px;
+  }
 }

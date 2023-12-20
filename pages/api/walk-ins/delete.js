@@ -6,19 +6,19 @@ export default async (req, res) => {
     const { id } = req.body;
     const { token } = cookie.parse(req.headers.cookie);
 
-    if (!token) {
-      res.status(403).json({ message: 'Unauthorized' });
-    }
-
     function isNumber(input) {
       return typeof input === 'number' && !isNaN(input);
     }
 
-    if (!isNumber) {
+    if (!isNumber(id)) {
       res.status(403).json({ message: 'Invalid request' });
     }
 
-    const strapiRes = await fetch(`${API_URL}/api/appointments/${id}`, {
+    if (!token) {
+      res.status(403).json({ message: 'Unauthorized' });
+    }
+
+    const strapiRes = await fetch(`${API_URL}/api/walk-ins/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
