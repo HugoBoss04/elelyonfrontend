@@ -44,7 +44,9 @@ export default function Home({ allCollections }) {
             Empowering Men With Impeccable Grooming and Style
           </h2>
           <Link
-            href={user ? '/account/dashboard' : '/account/login'}
+            href={
+              user.username !== '' ? '/account/dashboard' : '/account/login'
+            }
             className={classes['hero-btn']}
           >
             book now

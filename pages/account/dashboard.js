@@ -322,6 +322,15 @@ export async function getServerSideProps(context) {
   const { req } = context;
   const browserCookie = req.headers.cookie;
 
+  if (!browserCookie) {
+    return {
+      redirect: {
+        destination: '/account/login',
+        permanent: false,
+      },
+    };
+  }
+
   const { token } = cookie.parse(browserCookie);
 
   if (!token) {
@@ -343,8 +352,6 @@ export async function getServerSideProps(context) {
     });
 
     const data = await strapiRes.json();
-
-    console.log(data);
 
     if (data.username === 'admin') {
       return {

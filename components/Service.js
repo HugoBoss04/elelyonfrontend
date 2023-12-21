@@ -44,7 +44,7 @@ const Service = ({
       </div>
       {!dashboard && (
         <Link
-          href={user ? '/account/dashboard' : '/account/login'}
+          href={user.username !== '' ? '/account/dashboard' : '/account/login'}
           className={classes.btn}
         >
           BOOK APPOINTMENT
