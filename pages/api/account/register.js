@@ -37,6 +37,7 @@ export default async (req, res) => {
       res.status(400).json({
         message: 'Please fill out all fields.',
       });
+      return;
     }
 
     if (
@@ -47,6 +48,7 @@ export default async (req, res) => {
       res.status(400).json({
         message: 'Something went wrong. Please try again.',
       });
+      return;
     }
 
     if (

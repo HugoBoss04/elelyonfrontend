@@ -10,6 +10,7 @@ export default async (req, res) => {
       res.status(400).json({
         message: 'Please fill out all fields',
       });
+      return;
     }
 
     if (
@@ -68,6 +69,7 @@ export default async (req, res) => {
       res.status(200).json({ user: data.user });
     } else {
       res.status(400).json({ message: 'Invalid credentials' });
+      return;
     }
   } else {
     res.setHeader('Allow', ['POST']);

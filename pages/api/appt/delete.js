@@ -8,6 +8,7 @@ export default async (req, res) => {
 
     if (!token) {
       res.status(403).json({ message: 'Unauthorized' });
+      return;
     }
 
     function isNumber(input) {
@@ -16,6 +17,7 @@ export default async (req, res) => {
 
     if (!isNumber) {
       res.status(403).json({ message: 'Invalid request' });
+      return;
     }
 
     const strapiRes = await fetch(`${API_URL}/api/appointments/${id}`, {
@@ -32,6 +34,7 @@ export default async (req, res) => {
       res.status(200).json({ data });
     } else {
       res.status(403).json({ message: 'Something went wrong.' });
+      return;
     }
   } else {
     res.setHeader('Allow', ['DELETE']);

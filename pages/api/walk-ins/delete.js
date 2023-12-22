@@ -12,10 +12,12 @@ export default async (req, res) => {
 
     if (!isNumber(id)) {
       res.status(403).json({ message: 'Invalid request' });
+      return;
     }
 
     if (!token) {
       res.status(403).json({ message: 'Unauthorized' });
+      return;
     }
 
     const strapiRes = await fetch(`${API_URL}/api/walk-ins/${id}`, {
@@ -32,6 +34,7 @@ export default async (req, res) => {
       res.status(200).json({ data });
     } else {
       res.status(403).json({ message: 'Something went wrong.' });
+      return;
     }
   } else {
     res.setHeader('Allow', ['DELETE']);

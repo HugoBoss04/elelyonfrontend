@@ -31,7 +31,7 @@ export default async (req, res) => {
 
     if (isEarlierThanNow(date, convertTime12to24(time))) {
       res.status(400).json({ message: 'Appointment must be in the future.' });
-      ret;
+      return;
     }
 
     function checkServiceInput(inputString) {

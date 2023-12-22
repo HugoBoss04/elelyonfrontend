@@ -50,6 +50,7 @@ export default async (req, res) => {
       res.status(200).json({ user: data.user });
     } else {
       res.status(400).json({ message: data.error.message });
+      return;
     }
   } else {
     res.setHeader('Allow', ['POST']);

@@ -21,6 +21,7 @@ export default async (req, res) => {
 
     if (!token) {
       res.status(403).json({ message: 'Unauthorized' });
+      return;
     }
 
     if (containsSpecialCharacters(name)) {
@@ -64,6 +65,7 @@ export default async (req, res) => {
       res.status(200).json({ data });
     } else {
       res.status(data.error.status).json({ message: data.error.message });
+      return;
     }
   } else {
     res.setHeader('Allow', ['POST']);

@@ -17,6 +17,7 @@ export default async (req, res) => {
       res
         .status(403)
         .json({ message: 'Only registered users can leave reviews.' });
+      return;
     }
 
     function checkInput(inputString) {

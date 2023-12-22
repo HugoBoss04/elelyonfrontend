@@ -16,8 +16,6 @@ export default async (req, res) => {
 
     const sanitizedEmail = validator.isEmail(email);
 
-    console.log(sanitizedEmail);
-
     if (sanitizedEmail) {
       const strapiRes = await fetch(`${API_URL}/api/auth/forgot-password`, {
         method: 'POST',
@@ -34,13 +32,14 @@ export default async (req, res) => {
       if (strapiRes.ok) {
         res.status(200).json({ data, strapiRes });
       } else {
-        console.log(data);
         res
           .status(data.error.status)
           .json({ message: 'Something went wrong.' });
+        return;
       }
     } else {
       res.status(400).json({ message: 'Please enter a valid email.' });
+      return;
     }
   } else {
     res.setHeader('Allow', ['POST']);
