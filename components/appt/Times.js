@@ -9,7 +9,6 @@ const Times = ({ setActiveStep, barbers, appts }) => {
   const [shiftEnd, setShiftEnd] = useState('');
 
   let hoursArray = [];
-  let skipIterations = 0;
   let singleBarberWorking = false;
 
   //For loop which adds all time blocks to hoursArray.
@@ -108,7 +107,6 @@ const Times = ({ setActiveStep, barbers, appts }) => {
         }
       });
     }
-
     return barberIsNotAvailable;
   };
 
@@ -190,7 +188,10 @@ const Times = ({ setActiveStep, barbers, appts }) => {
       return isTimeWithinShift(startTime, endTime, time);
     });
 
-    if (barbersWorkingAtThisTime.length <= appointmentsAtThisTime.length) {
+    if (
+      barbersWorkingAtThisTime.length <= appointmentsAtThisTime.length &&
+      appointmentsAtThisTime.length !== 0
+    ) {
       return true;
     }
     return false;

@@ -63,9 +63,9 @@ export default function Calendar({ setActiveStep, barbers, schedules }) {
   const handleSelection = (e) => {
     setApptInfo({
       ...apptInfo,
-      date: `${e.currentTarget.getAttribute(
-        'data-year'
-      )}-${e.currentTarget.getAttribute('data-month')}-${e.currentTarget
+      date: `${e.currentTarget.getAttribute('data-year')}-${e.currentTarget
+        .getAttribute('data-month')
+        .padStart(2, '0')}-${e.currentTarget
         .getAttribute('data-date')
         .padStart(2, '0')}`,
     });

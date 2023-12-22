@@ -27,7 +27,6 @@ const DashboardPage = ({ allCollections, appts }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [loading, setLoading] = useState(true);
   const [selectedService, setSelectedService] = useState('');
-  const [componentError, setComponentError] = useState('');
 
   const { services, barbers, schedules } = allCollections.data[0].attributes;
 
