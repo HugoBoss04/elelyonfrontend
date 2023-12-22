@@ -13,15 +13,8 @@ import { API_URL, NEXT_URL } from '@/config/index';
 import { useRouter } from 'next/router';
 
 const AdminDashboardPage = ({ barbers, allAppointments, allWalkIns }) => {
-  const {
-    error,
-    setError,
-    successMsg,
-    setSuccessMsg,
-    logout,
-    user,
-    adminUser,
-  } = useContext(AuthContext);
+  const { error, setError, successMsg, setSuccessMsg, logout } =
+    useContext(AuthContext);
   const [appointments, setAppointments] = useState(allAppointments.data);
   const [walkIns, setWalkIns] = useState(allWalkIns.data);
   const [waitingList, setWaitingList] = useState([]);
@@ -145,7 +138,7 @@ const AdminDashboardPage = ({ barbers, allAppointments, allWalkIns }) => {
     const dateStr = appt.attributes.date;
     const timeStr = appt.attributes.time;
     const name = appt.attributes.name;
-    const barber = appt.attributes.barber.data.attributes.name;
+    const barber = appt.attributes.barbers.data[0].attributes.name;
     // Parse the date and time strings
     const dateParts = dateStr.split('-').map((part) => parseInt(part, 10));
     const timeParts = timeStr.split(':').map((part) => parseInt(part, 10));
@@ -229,11 +222,6 @@ const AdminDashboardPage = ({ barbers, allAppointments, allWalkIns }) => {
     });
   }, [waitingList]);
 
-  useEffect(() => {
-    console.log(adminUser);
-    console.log(user);
-  }, []);
-
   return (
     <Layout title="El Elyon | Login">
       <div className={classes.bg}>
@@ -304,12 +292,10 @@ const AdminDashboardPage = ({ barbers, allAppointments, allWalkIns }) => {
               </thead>
               <tbody>
                 {organizedWaitingList?.map((client, index) => {
-                  console.log(client);
                   const { name } = client.attributes;
                   const barber =
                     client?.attributes?.barber?.data?.attributes?.name ||
                     client.attributes.barber;
-                  console.log(client.attributes.barber);
                   return (
                     <tr key={index}>
                       <td className={classes.cell}>{index + 1}.</td>
