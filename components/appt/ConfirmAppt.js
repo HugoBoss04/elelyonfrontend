@@ -76,10 +76,6 @@ const ConfirmAppt = ({ setActiveStep }) => {
     setIsDesktop(window.innerWidth >= 1000);
   }, []);
 
-  useEffect(() => {
-    console.log(error);
-  }, [error]);
-
   return isDesktop ? (
     <>
       <table className={classes['appt-container']}>

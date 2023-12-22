@@ -303,10 +303,7 @@ const DashboardPage = ({ allCollections, appts }) => {
                 />
               )}
               {activeStep === 5 && (
-                <ConfirmAppt
-                  setActiveStep={setActiveStep}
-                  setComponentError={setComponentError}
-                />
+                <ConfirmAppt setActiveStep={setActiveStep} />
               )}
             </div>
           </div>
