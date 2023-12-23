@@ -55,6 +55,13 @@
   background: #bbbbbb;
 }
 @media (max-width: 550px) {
+  .table {
+    margin: 0 auto;
+    width: 90%;
+  }
+  .day-header {
+    font-size: 14px;
+  }
   .cell {
     height: 50px;
   }
