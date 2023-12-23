@@ -5,8 +5,16 @@ import { containsSpecialCharacters } from '@/utils/specialCharacterCheck';
 export default async (req, res) => {
   const formatNumber = (number) => {
     let value = number.replace(/\D/g, ''); // Remove all non-digits
-    value = value.slice(0, 10); // Limit to first 10 digits
 
+    // Remove leading '1' if it's a country code and the length is 11
+    if (value.length === 11 && value.startsWith('1')) {
+      value = value.slice(1);
+    }
+
+    // Limit to first 10 digits
+    value = value.slice(0, 10);
+
+    // Format the number
     if (value.length > 3 && value.length <= 6) {
       value = value.slice(0, 3) + '-' + value.slice(3);
     } else if (value.length > 6) {

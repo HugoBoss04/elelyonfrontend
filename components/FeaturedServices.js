@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react';
 
 const FeaturedServices = ({ services }) => {
   const [isDesktop, setIsDesktop] = useState(false);
-  console.log(services);
   useEffect(() => {
     setIsDesktop(window.innerWidth >= 1000);
   }, []);

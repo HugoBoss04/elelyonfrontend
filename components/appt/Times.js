@@ -3,13 +3,15 @@ import AuthContext from '@/utils/AuthContext';
 import { useContext, useEffect, useState } from 'react';
 
 const Times = ({ setActiveStep, barbers, appts }) => {
+  console.log(appts, '1');
+  console.log(barbers, '2');
   const { setApptInfo, apptInfo } = useContext(AuthContext);
+  console.log(apptInfo, '3');
   const [availability, setAvailability] = useState([]);
   const [shiftStart, setShiftStart] = useState('');
   const [shiftEnd, setShiftEnd] = useState('');
 
   let hoursArray = [];
-  let singleBarberWorking = false;
 
   //For loop which adds all time blocks to hoursArray.
   for (let i = 10; i <= 18; i++) {
@@ -171,9 +173,8 @@ const Times = ({ setActiveStep, barbers, appts }) => {
         return null;
       })
       .filter((item) => item !== null); // Filter out null values
-    if (barbersWorkingThatDay.length === 1) {
-      singleBarberWorking = true;
-    }
+
+    console.log(barbersWorkingThatDay, '4');
 
     const appointmentsAtThisTime = appts.data.filter((appt) => {
       return (
@@ -187,6 +188,9 @@ const Times = ({ setActiveStep, barbers, appts }) => {
       const { startTime, endTime } = barber.schedule.attributes;
       return isTimeWithinShift(startTime, endTime, time);
     });
+
+    console.log(appointmentsAtThisTime, '5');
+    console.log(barbersWorkingAtThisTime, '6');
 
     if (
       barbersWorkingAtThisTime.length <= appointmentsAtThisTime.length &&

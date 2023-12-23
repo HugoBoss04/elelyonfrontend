@@ -82,7 +82,6 @@ export const AuthProvider = ({ children }) => {
       });
     } else {
       setError(data.message);
-      console.log(data);
     }
   };
 
@@ -137,7 +136,6 @@ export const AuthProvider = ({ children }) => {
       } else {
         setError(data.message);
       }
-      console.log(data);
     }
   };
 
