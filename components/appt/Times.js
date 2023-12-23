@@ -3,10 +3,7 @@ import AuthContext from '@/utils/AuthContext';
 import { useContext, useEffect, useState } from 'react';
 
 const Times = ({ setActiveStep, barbers, appts }) => {
-  console.log(appts, '1');
-  console.log(barbers, '2');
   const { setApptInfo, apptInfo } = useContext(AuthContext);
-  console.log(apptInfo, '3');
   const [availability, setAvailability] = useState([]);
   const [shiftStart, setShiftStart] = useState('');
   const [shiftEnd, setShiftEnd] = useState('');
@@ -125,7 +122,9 @@ const Times = ({ setActiveStep, barbers, appts }) => {
     }
 
     // Return the formatted time
-    return `${hours.toString().padStart(2, '0')}:${minutes}:00.000`;
+    return process.env.NEXT_PUBLIC_PRODUCTION === 'false'
+      ? `${hours.toString().padStart(2, '0')}:${minutes}:00.000`
+      : `${hours.toString().padStart(2, '0')}:${minutes}:00`;
   }
 
   function isTimeWithinShift(shiftStart, shiftEnd, time) {
@@ -174,8 +173,6 @@ const Times = ({ setActiveStep, barbers, appts }) => {
       })
       .filter((item) => item !== null); // Filter out null values
 
-    console.log(barbersWorkingThatDay, '4');
-
     const appointmentsAtThisTime = appts.data.filter((appt) => {
       return (
         appt.attributes.date === apptInfo.date &&
@@ -188,9 +185,6 @@ const Times = ({ setActiveStep, barbers, appts }) => {
       const { startTime, endTime } = barber.schedule.attributes;
       return isTimeWithinShift(startTime, endTime, time);
     });
-
-    console.log(appointmentsAtThisTime, '5');
-    console.log(barbersWorkingAtThisTime, '6');
 
     if (
       barbersWorkingAtThisTime.length <= appointmentsAtThisTime.length &&
