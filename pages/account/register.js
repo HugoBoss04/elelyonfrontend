@@ -8,6 +8,8 @@ import AuthContext from 'utils/AuthContext';
 
 import aboutImg from '../../public/images/about-section-img.jpg';
 
+import cookie from 'cookie';
+
 const RegisterPage = () => {
   const {
     register,
@@ -173,3 +175,25 @@ const RegisterPage = () => {
   );
 };
 export default RegisterPage;
+
+export async function getServerSideProps(context) {
+  const { req } = context;
+  const browserCookie = req.headers.cookie;
+
+  if (browserCookie) {
+    const { token } = cookie.parse(browserCookie);
+
+    if (token) {
+      return {
+        redirect: {
+          destination: '/account/dashboard',
+          permanent: false,
+        },
+      };
+    }
+  }
+
+  return {
+    props: {},
+  };
+}

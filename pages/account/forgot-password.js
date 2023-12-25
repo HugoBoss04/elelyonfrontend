@@ -88,15 +88,17 @@ export async function getServerSideProps(context) {
   const { req } = context;
   const browserCookie = req.headers.cookie;
 
-  const { token } = cookie.parse(browserCookie);
+  if (browserCookie) {
+    const { token } = cookie.parse(browserCookie);
 
-  if (token) {
-    return {
-      redirect: {
-        destination: '/account/dashboard',
-        permanent: false,
-      },
-    };
+    if (token) {
+      return {
+        redirect: {
+          destination: '/account/dashboard',
+          permanent: false,
+        },
+      };
+    }
   }
 
   return {

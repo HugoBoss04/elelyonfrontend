@@ -170,13 +170,15 @@
   cursor: pointer;
   color: #e91212;
 }
-@media (max-width: 600px) {
+
+@media (max-width: 1500px) {
   .container {
-    min-height: calc(100vh - 160px);
-    max-width: 90vw;
+    max-width: 80vw;
+    padding-top: 60px;
+    height: fit-content;
+    grid-template-columns: 6fr 11fr;
   }
-  .input,
-  .button {
-    width: 80%;
+  .form-container {
+    max-width: 30vw;
   }
 }
