@@ -241,7 +241,7 @@
 }
 @media (max-height: 800px) {
   .schedule-container {
-    max-height: 500px;
+    max-height: 450px;
   }
   .appt-container {
     width: 70%;
