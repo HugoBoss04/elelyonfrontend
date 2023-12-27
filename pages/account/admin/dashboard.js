@@ -330,9 +330,18 @@ export async function getServerSideProps(context) {
   const { req } = context;
   const browserCookie = req.headers.cookie;
 
+  if (!browserCookie) {
+    return {
+      redirect: {
+        destination: '/account/admin/login',
+        permanent: false,
+      },
+    };
+  }
+
   const { token } = cookie.parse(browserCookie);
 
-  if (!browserCookie || !token) {
+  if (!token) {
     return {
       redirect: {
         destination: '/account/admin/login',
