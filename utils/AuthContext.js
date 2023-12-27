@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
     confirmPassword: '',
     reminderType: '',
   });
-  const [registerSuccess, setRegisterSuccess] = useState(true);
+  const [registerSuccess, setRegisterSuccess] = useState(false);
 
   const router = useRouter();
 
