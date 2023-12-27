@@ -120,6 +120,28 @@
 .input-radio:not(:first-of-type) {
   margin-left: 10px;
 }
+.success-msg-container {
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: center;
+}
+.success-msg {
+  margin: 15px auto;
+  font-size: 18px;
+  color: #4e4d4d;
+}
+.success-msg-info {
+  margin: 0 auto;
+  font-size: 16px;
+  color: #4e4d4d;
+}
+.icon {
+  margin: 30px auto 0;
+  color: #4e4d4d;
+}
 @media (min-width: 1000px) and (max-width: 1500px) {
   .container {
     max-width: 80vw;
@@ -164,5 +186,23 @@
   }
   .btn {
     margin: 30px 0;
+  }
+  .success-msg-container {
+    padding-left: 0px;
+    padding: 30px;
+  }
+  .success-msg {
+    margin: 15px auto;
+    font-size: 16px;
+    color: #4e4d4d;
+  }
+  .success-msg-info {
+    margin: 0 auto;
+    font-size: 14px;
+    color: #4e4d4d;
+  }
+  .icon {
+    margin: 30px auto 0;
+    color: #4e4d4d;
   }
 }

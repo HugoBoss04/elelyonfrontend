@@ -29,6 +29,8 @@ export const AuthProvider = ({ children }) => {
     confirmPassword: '',
     reminderType: '',
   });
+  const [registerSuccess, setRegisterSuccess] = useState(true);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -80,6 +82,7 @@ export const AuthProvider = ({ children }) => {
         confirmPassword: '',
         reminderType: '',
       });
+      setRegisterSuccess(true);
     } else {
       setError(data.message);
     }
@@ -245,6 +248,7 @@ export const AuthProvider = ({ children }) => {
         setAdminUser,
         formData,
         setFormData,
+        registerSuccess,
       }}
     >
       {children}
