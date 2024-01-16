@@ -100,7 +100,32 @@
 .services-hero-img-two {
   object-fit: cover;
 }
-@media (min-width: 1000px) {
+@media (min-width: 650px) {
+  .services-select {
+    width: 200px;
+    font-size: 18px;
+  }
+  .icon {
+    left: calc(50% + 75px);
+  }
+  .services-container {
+    display: grid;
+    margin-bottom: 60px;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 60px;
+    row-gap: 30px;
+  }
+  .service {
+    width: 100%;
+  }
+  .services-hero-two-container {
+    width: 100vw;
+    height: 500px;
+    background-position: center bottom;
+    background-size: 100vw;
+  }
+}
+@media (min-width: 1025px) {
   .services-hero-container {
     height: 400px;
   }
@@ -125,11 +150,7 @@
     left: calc(50% + 105px);
   }
   .services-container {
-    display: grid;
-    margin-bottom: 60px;
     grid-template-columns: repeat(3, 1fr);
-    column-gap: 60px;
-    row-gap: 30px;
   }
   .service {
     width: 100%;

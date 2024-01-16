@@ -11,9 +11,11 @@ import { useEffect, useState } from 'react';
 
 const AboutPage = () => {
   const [isDesktop, setIsDesktop] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
 
   useEffect(() => {
-    setIsDesktop(window.innerWidth >= 1000);
+    setIsDesktop(window.innerWidth > 1024);
+    setIsTablet(window.innerWidth >= 650 || window.innerWidth <= 1024);
   }, []);
   return (
     <Layout>
@@ -112,7 +114,7 @@ const AboutPage = () => {
             </div>
           </div>
         </div>
-        {isDesktop ? (
+        {isDesktop || isTablet ? (
           <div className={classes['about-hero-two-container']}>
             <div className={classes.overlay}></div>
           </div>

@@ -127,6 +127,12 @@
   text-decoration: underline;
   font-weight: 500;
 }
+@media (min-width: 650px) {
+  .left {
+    right: 100vw;
+    transform: translateX(0) scale(0.75);
+  }
+}
 @media (min-width: 1000px) {
   .container {
     max-width: 80vw;

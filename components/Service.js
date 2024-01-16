@@ -38,7 +38,7 @@ const Service = ({
           <div className={classes.line}></div>
         </div>
         <p className={classes.value}>
-          <span className={classes['number-fix']}>{durationNumber} </span>
+          <span className={classes['number-fix']}>{durationNumber}</span>
           {durationLength}.
         </p>
       </div>

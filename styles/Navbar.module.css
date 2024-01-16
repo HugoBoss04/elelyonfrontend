@@ -67,7 +67,19 @@
 .link:hover {
   color: #4e4d4d;
 }
-@media (min-width: 1000px) {
+@media (min-width: 650px) {
+  .bg {
+    width: 100vw;
+  }
+  .container {
+    max-width: 80vw;
+  }
+  .logo {
+    font-size: 36px;
+  }
+}
+
+@media (min-width: 1025px) {
   .bg {
     width: 100vw;
   }

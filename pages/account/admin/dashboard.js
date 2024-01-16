@@ -223,7 +223,7 @@ const AdminDashboardPage = ({ barbers, allAppointments, allWalkIns }) => {
   }, [waitingList]);
 
   return (
-    <Layout title="El Elyon | Login">
+    <Layout title="El Elyon | Dashboard">
       <div className={classes.bg}>
         <div className={classes.container}>
           <div className={classes['form-container']}>

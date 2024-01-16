@@ -11,9 +11,11 @@ import { API_URL } from '../config';
 const ServicesPage = ({ services }) => {
   const [activeServices, setActiveServices] = useState(services.data);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
 
   useEffect(() => {
-    setIsDesktop(window.innerWidth >= 1000);
+    setIsDesktop(window.innerWidth > 1024);
+    setIsTablet(window.innerWidth >= 650 || window.innerWidth <= 1024);
   }, []);
 
   const setCategory = (e) => {
@@ -79,7 +81,7 @@ const ServicesPage = ({ services }) => {
             })}
           </ul>
         </div>
-        {isDesktop ? (
+        {isDesktop || isTablet ? (
           <div className={classes['services-hero-two-container']}>
             <div className={classes.overlay}></div>
           </div>

@@ -429,8 +429,8 @@ export default async (req, res) => {
       if (user.reminderType === 'both' || user.reminderType === 'email') {
         let draftEmail = {
           from: {
+            email: 'elelyonbusiness7@gmail.com',
             name: 'El Elyon',
-            email: 'support@annyabby.com',
           },
           personalizations: [
             {

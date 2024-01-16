@@ -9,6 +9,7 @@ const Navbar = () => {
   const { user, adminUser } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
   const router = useRouter();
   const { query } = router;
 
@@ -25,7 +26,8 @@ const Navbar = () => {
   }
 
   useEffect(() => {
-    setIsDesktop(window.innerWidth >= 1000);
+    setIsDesktop(window.innerWidth > 1024);
+    setIsTablet(window.innerWidth >= 650 || window.innerWidth <= 1024);
   }, []);
 
   return (
@@ -35,7 +37,7 @@ const Navbar = () => {
           <Link href="/" className={classes.logo}>
             El Elyon
           </Link>
-          {!isDesktop ? (
+          {!isDesktop && !isTablet ? (
             <div
               className={`${classes['menu-icon']} ${isOpen && classes.open}`}
               onClick={() => setIsOpen(!isOpen)}

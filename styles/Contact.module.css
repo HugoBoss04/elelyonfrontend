@@ -36,7 +36,28 @@ a[href^='tel'].value {
 .telephone-number {
   letter-spacing: 1px;
 }
-@media (min-width: 1000px) {
+@media (min-width: 650px) {
+  .contact-bg {
+    background: #4e4d4d;
+    width: 100vw;
+  }
+  .container {
+    padding: 15px 0;
+    color: #e3e3e3;
+    max-width: 90vw;
+    margin: 0 auto;
+    grid-template-rows: 125px;
+    grid-template-columns: 2fr 1fr 2fr;
+  }
+  .left,
+  .middle,
+  .right {
+    padding-top: 30px;
+    row-gap: 30px;
+  }
+}
+
+@media (min-width: 1025px) {
   .contact-bg {
     background: #4e4d4d;
     width: 100vw;

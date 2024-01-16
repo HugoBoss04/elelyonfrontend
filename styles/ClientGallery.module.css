@@ -38,6 +38,25 @@
 .img {
   object-fit: cover;
 }
+@media (min-width: 650px) {
+  .imgs-container {
+    max-width: 90vw;
+    height: 530px;
+    padding-bottom: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 43vw);
+    overflow-x: auto;
+    column-gap: 15px;
+  }
+  .img-container {
+    position: relative;
+    height: 500px;
+    width: 43vw;
+  }
+  .img {
+    object-fit: cover;
+  }
+}
 @media (min-width: 1000px) {
   .container {
     max-width: 70vw;

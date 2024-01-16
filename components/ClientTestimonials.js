@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 
 const ClientTestimonials = ({ testimonials, user }) => {
   const [isDesktop, setIsDesktop] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activeTestimonialsContainer, setActiveTestimonialsContainer] =
     useState(0);
@@ -14,20 +15,28 @@ const ClientTestimonials = ({ testimonials, user }) => {
   const router = useRouter();
 
   useEffect(() => {
-    setIsDesktop(window.innerWidth >= 1000);
+    setIsDesktop(window.innerWidth > 1024);
+    setIsTablet(window.innerWidth >= 650 && window.innerWidth <= 1024);
   }, []);
 
   let containers = [];
   let containerIndex = 0;
 
-  for (let i = 0; i < testimonials.data.length; i += 3) {
-    const container = testimonials.data.slice(i, i + 3);
-    containers.push(container);
-    containerIndex++;
+  if (isDesktop) {
+    for (let i = 0; i < testimonials.data.length; i += 3) {
+      const container = testimonials.data.slice(i, i + 3);
+      containers.push(container);
+      containerIndex++;
+    }
+  } else {
+    for (let i = 0; i < testimonials.data.length; i += 2) {
+      const container = testimonials.data.slice(i, i + 2);
+      containers.push(container);
+      containerIndex++;
+    }
   }
   const forwardNav = () => {
-    if (!isDesktop) {
-      console.log(testimonials.data.length);
+    if (!isDesktop && !isTablet) {
       if (activeTestimonial + 1 > testimonials.data.length - 1) {
         setActiveTestimonial(testimonials.data.length - 1);
       } else {
@@ -42,7 +51,7 @@ const ClientTestimonials = ({ testimonials, user }) => {
     }
   };
   const backwardsNav = () => {
-    if (!isDesktop) {
+    if (!isDesktop && !isTablet) {
       if (activeTestimonial - 1 < 0) {
         setActiveTestimonial(0);
       } else {
@@ -66,7 +75,7 @@ const ClientTestimonials = ({ testimonials, user }) => {
         <div className={classes.line}></div>
       </div>
       <div className={classes['content-container']}>
-        {!isDesktop
+        {!isDesktop && !isTablet
           ? testimonials.data.map((currentTestimonial, index) => {
               const { name, testimonial, rating } =
                 currentTestimonial.attributes;
