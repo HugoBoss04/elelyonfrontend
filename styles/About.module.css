@@ -190,8 +190,8 @@
     overflow-x: auto;
   }
   .about-hero-two-container {
-    height: 400px;
-    background-position: center bottom;
+    height: 300px;
+    background-position: center center;
     background-image: url(../public/images/about-hero-img-2-1920x1280.jpg);
     background-size: 100vw;
   }
@@ -226,7 +226,7 @@
   }
   .about-section-two,
   .about-section-one {
-    height: 450px;
+    height: 500px;
   }
   .included-section {
     max-width: calc(70vw + 30px);
@@ -256,6 +256,7 @@
   .about-section {
     max-width: 55vw;
   }
+
   .included-section {
     max-width: calc(70vw + 30px);
     margin: 0 auto 60px;
