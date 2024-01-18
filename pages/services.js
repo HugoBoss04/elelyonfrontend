@@ -15,7 +15,7 @@ const ServicesPage = ({ services }) => {
 
   useEffect(() => {
     setIsDesktop(window.innerWidth > 1024);
-    setIsTablet(window.innerWidth >= 650 || window.innerWidth <= 1024);
+    setIsTablet(window.innerWidth >= 650 && window.innerWidth <= 1024);
   }, []);
 
   const setCategory = (e) => {

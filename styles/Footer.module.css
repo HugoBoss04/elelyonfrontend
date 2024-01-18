@@ -95,12 +95,12 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
 }
-@media (min-width: 1000px) {
+@media (min-width: 650px) {
   .first-section {
-    width: 70vw;
+    width: 80vw;
   }
   .second-section {
-    width: 70vw;
+    width: 80vw;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -123,5 +123,14 @@
   }
   .link {
     font-size: 18px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .first-section {
+    width: 70vw;
+  }
+  .second-section {
+    width: 70vw;
   }
 }

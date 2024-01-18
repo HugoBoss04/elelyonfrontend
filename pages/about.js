@@ -15,7 +15,7 @@ const AboutPage = () => {
 
   useEffect(() => {
     setIsDesktop(window.innerWidth > 1024);
-    setIsTablet(window.innerWidth >= 650 || window.innerWidth <= 1024);
+    setIsTablet(window.innerWidth >= 650 && window.innerWidth <= 1024);
   }, []);
   return (
     <Layout>

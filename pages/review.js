@@ -19,6 +19,7 @@ const ReviewPage = () => {
     rating: 5,
     review: '',
   });
+  const [isTablet, setIsTablet] = useState(false);
 
   const router = useRouter();
 
@@ -68,9 +69,19 @@ const ReviewPage = () => {
       setLoading(false);
     }
   }, [user]);
+  useEffect(() => {
+    if (user !== null) {
+      setFormData({ ...formData, name: `${user.firstName} ${user.lastName}` });
+      setLoading(false);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    setIsTablet(window.innerWidth >= 650 && window.innerWidth <= 1024);
+  }, []);
   return (
     <Layout title="Write a Review | El Elyon">
-      <div className="first-bg">
+      <div className="first-bg-review-page">
         <div className={classes.container}>
           <div className={classes['inputs-container']}>
             <h3 className={classes.header}>Rate Your Experience</h3>
@@ -143,6 +154,17 @@ const ReviewPage = () => {
             <div className={classes.overlay}></div>
           </div>
         </div>
+        {isTablet && (
+          <div className={classes['img-container-tablet']}>
+            <Image
+              src={hero}
+              alt="Barbershop Image"
+              fill
+              className={classes.img}
+            />
+            <div className={classes.overlay}></div>
+          </div>
+        )}
       </div>
     </Layout>
   );

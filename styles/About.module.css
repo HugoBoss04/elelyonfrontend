@@ -171,7 +171,8 @@
 @media (min-width: 650px) {
   .about-section {
     flex-direction: row;
-    max-width: 80vw;
+    max-width: 85vw;
+    column-gap: 30px;
   }
   .about-section-two,
   .about-section-one {
@@ -179,16 +180,18 @@
     width: 100%;
   }
   .included-section {
-    max-width: calc(85vw + 30px);
-    margin: 0 auto 60px;
-    padding: 0 15px;
-    display: flex;
+    width: 85vw;
+    height: 475px;
+    margin: 0 auto 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
     align-items: center;
-    justify-content: space-between;
+    column-gap: 30px;
+    overflow-x: auto;
   }
   .about-hero-two-container {
-    height: 350px;
-    background-position: center bottom;
+    height: 400px;
+    background-position: center center;
     background-image: url(../public/images/about-hero-img-2-1920x1280.jpg);
     background-size: 100vw;
   }

@@ -11,6 +11,12 @@ html {
   box-sizing: border-box;
   font-family: 'Raleway', sans-serif;
 }
+.first-bg-review-page {
+  width: 100vw;
+  background: #f8f8f8;
+  min-height: calc(100vh - 417px);
+  margin-top: 90px;
+}
 .first-bg {
   width: 100vw;
   background: #f8f8f8;
