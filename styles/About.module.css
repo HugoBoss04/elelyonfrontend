@@ -171,7 +171,7 @@
 @media (min-width: 650px) {
   .about-section {
     flex-direction: row;
-    max-width: 85vw;
+    max-width: 90vw;
     column-gap: 30px;
   }
   .about-section-two,
@@ -180,7 +180,7 @@
     width: 100%;
   }
   .included-section {
-    width: 85vw;
+    width: 90vw;
     height: 475px;
     margin: 0 auto 30px;
     display: grid;
@@ -191,7 +191,7 @@
   }
   .about-hero-two-container {
     height: 400px;
-    background-position: center center;
+    background-position: center bottom;
     background-image: url(../public/images/about-hero-img-2-1920x1280.jpg);
     background-size: 100vw;
   }

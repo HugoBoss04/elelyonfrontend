@@ -170,8 +170,23 @@
   cursor: pointer;
   color: #e91212;
 }
+@media (min-width: 651px) and (max-width: 1024px) {
+  .bg {
+    height: calc(100vh - 417px);
+  }
+  .container {
+    max-width: 90vw;
+    padding-top: 60px;
+    height: fit-content;
+    grid-template-columns: 6fr 11fr;
+    column-gap: 30px;
+  }
+  .form-container {
+    max-width: 100%;
+  }
+}
 
-@media (max-width: 1500px) {
+@media (min-width: 1025px) and (max-width: 1500px) {
   .container {
     max-width: 80vw;
     padding-top: 60px;
