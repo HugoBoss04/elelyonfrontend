@@ -23,7 +23,6 @@ const AdminDashboardPage = ({ barbers, allAppointments, allWalkIns }) => {
     name: '',
     barber: 'Any',
   });
-  const [isTablet, setIsTablet] = useState(false);
 
   const router = useRouter();
 
@@ -222,10 +221,6 @@ const AdminDashboardPage = ({ barbers, allAppointments, allWalkIns }) => {
       });
     });
   }, [waitingList]);
-
-  useEffect(() => {
-    setIsTablet(window.innerWidth >= 650 && window.innerWidth <= 1024);
-  }, []);
 
   return (
     <Layout title="El Elyon | Dashboard">

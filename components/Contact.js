@@ -1,13 +1,7 @@
-import { useEffect, useState } from 'react';
 import classes from '../styles/Contact.module.css';
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
 
 const Contact = () => {
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    setIsDesktop(window.innerWidth >= 1000);
-  }, []);
   return (
     <div className={classes['contact-bg']}>
       <div className={classes.container}>

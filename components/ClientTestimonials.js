@@ -1,5 +1,4 @@
 import classes from '../styles/ClientTestimonials.module.css';
-import { IoStarSharp } from 'react-icons/io5';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
 import Rating from './Rating';

@@ -7,7 +7,7 @@ import FeaturedServices from '@/components/FeaturedServices';
 import ClientGallery from '@/components/ClientGallery';
 import ClientTestimonials from '@/components/ClientTestimonials';
 import Contact from '@/components/Contact';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import Link from 'next/link';
 import { API_URL } from '../config';
 import qs from 'qs';

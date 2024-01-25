@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import classes from '@/styles/Calendar.module.css';
 import AuthContext from '@/utils/AuthContext';
 
